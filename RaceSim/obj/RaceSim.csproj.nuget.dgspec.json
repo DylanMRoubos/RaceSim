@@ -24,7 +24,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/dylanroubos/Projects/RaceSim/Model/Model.csproj": {
+                "projectPath": "/Users/dylanroubos/Projects/RaceSim/Model/Model.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

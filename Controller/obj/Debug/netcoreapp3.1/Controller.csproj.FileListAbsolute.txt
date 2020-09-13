@@ -1,0 +1,12 @@
+/Users/dylanroubos/Projects/RaceSim/Controller/bin/Debug/netcoreapp3.1/Controller.deps.json
+/Users/dylanroubos/Projects/RaceSim/Controller/bin/Debug/netcoreapp3.1/Controller.dll
+/Users/dylanroubos/Projects/RaceSim/Controller/bin/Debug/netcoreapp3.1/Controller.pdb
+/Users/dylanroubos/Projects/RaceSim/Controller/bin/Debug/netcoreapp3.1/Model.dll
+/Users/dylanroubos/Projects/RaceSim/Controller/bin/Debug/netcoreapp3.1/Model.pdb
+/Users/dylanroubos/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.csprojAssemblyReference.cache
+/Users/dylanroubos/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.AssemblyInfoInputs.cache
+/Users/dylanroubos/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.AssemblyInfo.cs
+/Users/dylanroubos/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.csproj.CoreCompileInputs.cache
+/Users/dylanroubos/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.csproj.CopyComplete
+/Users/dylanroubos/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.dll
+/Users/dylanroubos/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.pdb
