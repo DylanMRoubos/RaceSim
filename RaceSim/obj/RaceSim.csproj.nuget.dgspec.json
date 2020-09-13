@@ -1,0 +1,165 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/dylanroubos/Projects/RaceSim/RaceSim/RaceSim.csproj": {}
+  },
+  "projects": {
+    "/Users/dylanroubos/Projects/RaceSim/Controller/Controller.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/dylanroubos/Projects/RaceSim/Controller/Controller.csproj",
+        "projectName": "Controller",
+        "projectPath": "/Users/dylanroubos/Projects/RaceSim/Controller/Controller.csproj",
+        "packagesPath": "/Users/dylanroubos/.nuget/packages/",
+        "outputPath": "/Users/dylanroubos/Projects/RaceSim/Controller/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/dylanroubos/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/dylanroubos/Projects/RaceSim/Model/Model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/dylanroubos/Projects/RaceSim/Model/Model.csproj",
+        "projectName": "Model",
+        "projectPath": "/Users/dylanroubos/Projects/RaceSim/Model/Model.csproj",
+        "packagesPath": "/Users/dylanroubos/.nuget/packages/",
+        "outputPath": "/Users/dylanroubos/Projects/RaceSim/Model/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/dylanroubos/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/dylanroubos/Projects/RaceSim/RaceSim/RaceSim.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/dylanroubos/Projects/RaceSim/RaceSim/RaceSim.csproj",
+        "projectName": "RaceSim",
+        "projectPath": "/Users/dylanroubos/Projects/RaceSim/RaceSim/RaceSim.csproj",
+        "packagesPath": "/Users/dylanroubos/.nuget/packages/",
+        "outputPath": "/Users/dylanroubos/Projects/RaceSim/RaceSim/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/dylanroubos/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/Users/dylanroubos/Projects/RaceSim/Controller/Controller.csproj": {
+                "projectPath": "/Users/dylanroubos/Projects/RaceSim/Controller/Controller.csproj"
+              },
+              "/Users/dylanroubos/Projects/RaceSim/Model/Model.csproj": {
+                "projectPath": "/Users/dylanroubos/Projects/RaceSim/Model/Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
