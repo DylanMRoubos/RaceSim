@@ -11,11 +11,19 @@ namespace Model
         public Track(string name, SectionTypes[] sections)
         {
             Name = name;
-            Sections = new LinkedList<Section>();
+            Sections = convertSectionTypesToLinkedList(sections);
 
-            foreach (SectionTypes section in sections) {
-                Sections.AddFirst(new Section(section));
+        }
+        public LinkedList<Section> convertSectionTypesToLinkedList(SectionTypes[] sections)
+        {
+            LinkedList<Section> Sections = new LinkedList<Section>();
+
+            foreach (SectionTypes section in sections)
+            {
+                Sections.AddLast(new Section(section));
             }
+
+            return Sections;
         }
     }
 }

@@ -1,3 +1,15 @@
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Controller/bin/Debug/netcoreapp3.1/Controller.deps.json
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Controller/bin/Debug/netcoreapp3.1/Controller.dll
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Controller/bin/Debug/netcoreapp3.1/Controller.pdb
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Controller/bin/Debug/netcoreapp3.1/Model.dll
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Controller/bin/Debug/netcoreapp3.1/Model.pdb
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.csprojAssemblyReference.cache
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.AssemblyInfoInputs.cache
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.AssemblyInfo.cs
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.csproj.CoreCompileInputs.cache
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.csproj.CopyComplete
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.dll
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Controller/obj/Debug/netcoreapp3.1/Controller.pdb
 /Users/dylanroubos/Projects/RaceSim/Controller/bin/Debug/netcoreapp3.1/Controller.deps.json
 /Users/dylanroubos/Projects/RaceSim/Controller/bin/Debug/netcoreapp3.1/Controller.dll
 /Users/dylanroubos/Projects/RaceSim/Controller/bin/Debug/netcoreapp3.1/Controller.pdb

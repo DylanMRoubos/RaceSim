@@ -24,15 +24,15 @@ namespace Controller
         }
         public static void addTracks()
         {
-            SectionTypes[] sect1 = { SectionTypes.Straight, SectionTypes.LeftCorner, SectionTypes.RightCorner, SectionTypes.RightCorner };
-            SectionTypes[] sect2 = { SectionTypes.Straight, SectionTypes.LeftCorner, SectionTypes.RightCorner, SectionTypes.RightCorner };
-            SectionTypes[] sect3 = { SectionTypes.Straight, SectionTypes.LeftCorner, SectionTypes.RightCorner, SectionTypes.RightCorner };
+            SectionTypes[] sect1 = { SectionTypes.LeftCorner, SectionTypes.StartGrid, SectionTypes.StartGrid, SectionTypes.Finish, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight,  SectionTypes.RightCorner};
+            //SectionTypes[] sect2 = { SectionTypes.Straight, SectionTypes.LeftCorner, SectionTypes.RightCorner, SectionTypes.RightCorner };
+            //SectionTypes[] sect3 = { SectionTypes.Straight, SectionTypes.LeftCorner, SectionTypes.RightCorner, SectionTypes.RightCorner };
             Track track1 = new Track("Racetrack1", sect1);
-            Track track2 = new Track("Racetrack2", sect2);
-            Track track3 = new Track("Racetrack3", sect3);
+            //Track track2 = new Track("Racetrack2", sect2);
+            //Track track3 = new Track("Racetrack3", sect3);
             Competition.Tracks.Enqueue(track1);
-            Competition.Tracks.Enqueue(track2);
-            Competition.Tracks.Enqueue(track3);
+            //Competition.Tracks.Enqueue(track2);
+            //Competition.Tracks.Enqueue(track3);
         }
         //TODO: Check with teacher is .Nexttrack pops a track 2 times from queuee.
         public static void NextRace()

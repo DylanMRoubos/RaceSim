@@ -9,5 +9,6 @@ namespace Model
         {
             this.SectionType = SectionType;
         }
+
     }
 }

@@ -1,3 +1,21 @@
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/bin/Debug/netcoreapp3.1/RaceSim.exe
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/bin/Debug/netcoreapp3.1/RaceSim.deps.json
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/bin/Debug/netcoreapp3.1/RaceSim.runtimeconfig.json
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/bin/Debug/netcoreapp3.1/RaceSim.runtimeconfig.dev.json
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/bin/Debug/netcoreapp3.1/RaceSim.dll
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/bin/Debug/netcoreapp3.1/RaceSim.pdb
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/bin/Debug/netcoreapp3.1/Controller.dll
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/bin/Debug/netcoreapp3.1/Model.dll
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/bin/Debug/netcoreapp3.1/Controller.pdb
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/bin/Debug/netcoreapp3.1/Model.pdb
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/obj/Debug/netcoreapp3.1/RaceSim.csprojAssemblyReference.cache
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/obj/Debug/netcoreapp3.1/RaceSim.AssemblyInfoInputs.cache
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/obj/Debug/netcoreapp3.1/RaceSim.AssemblyInfo.cs
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/obj/Debug/netcoreapp3.1/RaceSim.csproj.CoreCompileInputs.cache
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/obj/Debug/netcoreapp3.1/RaceSim.csproj.CopyComplete
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/obj/Debug/netcoreapp3.1/RaceSim.dll
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/obj/Debug/netcoreapp3.1/RaceSim.pdb
+//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/RaceSim/obj/Debug/netcoreapp3.1/RaceSim.genruntimeconfig.cache
 /Users/dylanroubos/Projects/RaceSim/RaceSim/bin/Debug/netcoreapp3.1/RaceSim.deps.json
 /Users/dylanroubos/Projects/RaceSim/RaceSim/bin/Debug/netcoreapp3.1/RaceSim.runtimeconfig.json
 /Users/dylanroubos/Projects/RaceSim/RaceSim/bin/Debug/netcoreapp3.1/RaceSim.runtimeconfig.dev.json
