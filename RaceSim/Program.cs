@@ -12,7 +12,7 @@ namespace RaceSim
             Data.NextRace();
             //Console.WriteLine(Data.CurrentRace.Track.Name);
 
-            TrackVisualisation.DrawTrack(Data.CurrentRace.Track, 6, 2);
+            TrackVisualisation.DrawTrack(Data.CurrentRace.Track);
 
             //for (; ; )
             //{
