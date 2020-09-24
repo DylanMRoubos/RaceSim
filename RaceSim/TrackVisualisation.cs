@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Controller;
 using Model;
 
 namespace RaceSim
@@ -16,7 +17,7 @@ namespace RaceSim
         }
 
         #region graphics
-        private static string[] _startHorizontal = { "----", "  > ", " >  ", "----" };
+        private static string[] _startHorizontal = { "----", " 1> ", "2>  ", "----" };
         private static string[] _startVertical = { "|  |", "|^ |", "| ^|", "|  |" };
 
         private static string[] _finishHorizontal = { "----", "  # ", "  # ", "----" };
@@ -38,8 +39,11 @@ namespace RaceSim
         public static void DrawTrack(Track track)
         {
 
+            //drawDrivers(track);
+
             fillSectionBuildingDetailsArray(SectionGridDetails, track);
             GetLowestXAndYFromList(SectionGridDetails);
+
             completeTrack = new string[GetHighestYValue(), GetHighestXValue(), 4];
 
             BuildTrackArray(completeTrack, SectionGridDetails);
@@ -53,14 +57,18 @@ namespace RaceSim
             foreach (var Section in sectionBuildingDetails)
             {
                 //Start track horizontal & vertical 
-                if (Section.SectionType == SectionTypes.StartGrid)
+                if (Section.Section.SectionType == SectionTypes.StartGrid)
                 {
                     //Horizontal
                     if (Section.Direction == Direction.East || Section.Direction == Direction.West)
                     {
+
+                        //Check if driver is on section
+                        //update _startHorizontal with the update method
+
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _startHorizontal[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_startHorizontal[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
                     //Vertical
@@ -73,7 +81,7 @@ namespace RaceSim
                     }
                 }
                 //Straight track horizontal & vertical 
-                else if (Section.SectionType == SectionTypes.Straight)
+                else if (Section.Section.SectionType == SectionTypes.Straight)
                 {
                     //Horizontal
                     if (Section.Direction == Direction.East || Section.Direction == Direction.West)
@@ -93,7 +101,7 @@ namespace RaceSim
                     }
                 }
                 //Finish track horizontal & vertical 
-                else if (Section.SectionType == SectionTypes.Finish)
+                else if (Section.Section.SectionType == SectionTypes.Finish)
                 {
                     //Horizontal
                     if (Section.Direction == Direction.East || Section.Direction == Direction.West)
@@ -113,7 +121,7 @@ namespace RaceSim
                     }
                 }
                 //Corner left
-                else if (Section.SectionType == SectionTypes.LeftCorner)
+                else if (Section.Section.SectionType == SectionTypes.LeftCorner)
                 {
                     //Left -> North
                     if (Section.Direction == Direction.North)
@@ -148,7 +156,7 @@ namespace RaceSim
                     }
                 }
                 //Corner right
-                else if (Section.SectionType == SectionTypes.RightCorner)
+                else if (Section.Section.SectionType == SectionTypes.RightCorner)
                 {
                     //Right -> North
                     if (Section.Direction == Direction.North)
@@ -227,7 +235,7 @@ namespace RaceSim
                     }
                 }
 
-                details.Add(new SectionBuildingDetails(Section.SectionType, x, y, direction));
+                details.Add(new SectionBuildingDetails(Section, x, y, direction));
 
                 switch (direction)
                 {
@@ -302,7 +310,6 @@ namespace RaceSim
             return SectionTypes.Straight;
         }
 
-
         public static int GetHighestXValue()
         {
             int highestX = 0;
@@ -356,36 +363,32 @@ namespace RaceSim
 
             }
         }
+
+        public static string PLaceParticipantsOnTrack(string sectionRow, IParticipant participant1, IParticipant participant2)
+        {
+
+            var returnvalue = sectionRow;
+
+            if (participant1 != null)
+            {
+                returnvalue = returnvalue.Replace("1", $"{participant1.Name.Substring(0, 1)}");
+            }
+            else
+            {
+                returnvalue = returnvalue.Replace("1", " ");
+            }
+
+            if (participant2 != null)
+            {
+                returnvalue = returnvalue.Replace("2", $"{participant2.Name.Substring(0, 1)}");
+            }
+            else
+            {
+                returnvalue = returnvalue.Replace("2", " ");
+            }
+
+
+            return returnvalue;
+        }
     }
 }
-
-
-
-
-//TESTTRACK
-//fillThreeDArray(0, 0, _cornerLeftHorizontal);
-//fillThreeDArray(0, 1, _startHorizontal);
-//fillThreeDArray(0, 2, _startHorizontal);
-//fillThreeDArray(0, 3, _startHorizontal);
-//fillThreeDArray(0, 4, _finishHorizontal);
-//fillThreeDArray(0, 5, _cornerRightHorinzontal);
-//fillThreeDArray(1, 0, _trackVertical);
-//fillThreeDArray(1, 5, _trackVertical);
-//fillThreeDArray(2, 0, _trackVertical);
-//fillThreeDArray(2, 5, _cornerLefVertical);
-//fillThreeDArray(2, 6, _trackHorizontal);
-//fillThreeDArray(2, 7, _trackHorizontal);
-//fillThreeDArray(2, 8, _cornerRightHorinzontal);
-//fillThreeDArray(3, 0, _trackVertical);
-//fillThreeDArray(3, 5, _cornerLeftHorizontal);
-//fillThreeDArray(3, 6, _trackHorizontal);
-//fillThreeDArray(3, 7, _trackHorizontal);
-//fillThreeDArray(3, 8, _cornerRightVertical);
-//fillThreeDArray(4, 0, _cornerLefVertical);
-//fillThreeDArray(4, 1, _trackHorizontal);
-//fillThreeDArray(4, 2, _cornerRightHorinzontal);
-//fillThreeDArray(4, 3, _cornerLeftHorizontal);
-//fillThreeDArray(4, 4, _trackHorizontal);
-//fillThreeDArray(4, 5, _cornerRightVertical);
-//fillThreeDArray(5, 2, _cornerLefVertical);
-//fillThreeDArray(5, 3, _cornerRightVertical);

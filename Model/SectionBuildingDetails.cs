@@ -3,7 +3,7 @@ namespace Model
 {
     public class SectionBuildingDetails
     {
-        public SectionTypes SectionType { get; }
+        public Section Section { get; }
         public int X { get; set; }
         public int Y { get; set; }
         public Direction Direction;
@@ -12,9 +12,9 @@ namespace Model
         {
         }
 
-        public SectionBuildingDetails(SectionTypes sectionType, int x, int y, Direction direction)
+        public SectionBuildingDetails(Section section, int x, int y, Direction direction)
         {
-            SectionType = sectionType;
+            Section = section;
             X = x;
             Y = y;
             Direction = direction;
@@ -22,7 +22,7 @@ namespace Model
 
         public virtual string ToString()
         {
-            return $"type: {SectionType} x: {X} y: {Y} Direction: {Direction}";
+            return $"type: {Section} x: {X} y: {Y} Direction: {Direction}";
         }
     }
 }

@@ -12,8 +12,12 @@ namespace Model
         {
             this.Left = left;
             this.DistanceLeft = DistanceLeft;
-            this.Right = Right;
+            this.Right = right;
             this.DistanceRight = DistanceRight;
+        }
+        public SectionData()
+        {
+
         }
     }
 }

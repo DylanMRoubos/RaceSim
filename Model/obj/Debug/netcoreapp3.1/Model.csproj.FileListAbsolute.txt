@@ -1,12 +1,3 @@
-//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Model/bin/Debug/netcoreapp3.1/Model.deps.json
-//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Model/bin/Debug/netcoreapp3.1/Model.dll
-//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Model/bin/Debug/netcoreapp3.1/Model.pdb
-//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.csprojAssemblyReference.cache
-//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.AssemblyInfoInputs.cache
-//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.AssemblyInfo.cs
-//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.csproj.CoreCompileInputs.cache
-//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.dll
-//vmware-host/Shared Folders/dylanroubos On My Mac/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.pdb
 /Users/dylanroubos/Projects/RaceSim/Model/bin/Debug/netcoreapp3.1/Model.deps.json
 /Users/dylanroubos/Projects/RaceSim/Model/bin/Debug/netcoreapp3.1/Model.dll
 /Users/dylanroubos/Projects/RaceSim/Model/bin/Debug/netcoreapp3.1/Model.pdb
@@ -15,4 +6,11 @@
 /Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.csproj.CoreCompileInputs.cache
 /Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.dll
 /Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.pdb
-/Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.csprojAssemblyReference.cache
+\\vmware-host\Shared Folders\dylanroubos On My Mac\Projects\RaceSim\Model\bin\Debug\netcoreapp3.1\Model.deps.json
+\\vmware-host\Shared Folders\dylanroubos On My Mac\Projects\RaceSim\Model\bin\Debug\netcoreapp3.1\Model.dll
+\\vmware-host\Shared Folders\dylanroubos On My Mac\Projects\RaceSim\Model\bin\Debug\netcoreapp3.1\Model.pdb
+\\vmware-host\Shared Folders\dylanroubos On My Mac\Projects\RaceSim\Model\obj\Debug\netcoreapp3.1\Model.AssemblyInfoInputs.cache
+\\vmware-host\Shared Folders\dylanroubos On My Mac\Projects\RaceSim\Model\obj\Debug\netcoreapp3.1\Model.AssemblyInfo.cs
+\\vmware-host\Shared Folders\dylanroubos On My Mac\Projects\RaceSim\Model\obj\Debug\netcoreapp3.1\Model.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\dylanroubos On My Mac\Projects\RaceSim\Model\obj\Debug\netcoreapp3.1\Model.dll
+\\vmware-host\Shared Folders\dylanroubos On My Mac\Projects\RaceSim\Model\obj\Debug\netcoreapp3.1\Model.pdb
