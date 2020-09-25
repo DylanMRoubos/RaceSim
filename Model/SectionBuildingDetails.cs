@@ -19,10 +19,5 @@ namespace Model
             Y = y;
             Direction = direction;
         }
-
-        public virtual string ToString()
-        {
-            return $"type: {Section} x: {X} y: {Y} Direction: {Direction}";
-        }
     }
 }

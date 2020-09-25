@@ -17,63 +17,54 @@ namespace Controller
         {
             this.Track = Track;
             this.Participants = Participants;
+
             _random = new Random(DateTime.Now.Millisecond);
             _positions = new Dictionary<Section, SectionData>();
+
             AddParticipantsToTrack(Track, Participants);
         }
         public Race()
         {
         }
-        //TODO: Optimise method
+
         public void AddParticipantsToTrack(Track track, List<IParticipant> participants)
         {
-            int i = 0;
-            int startGridAmount = 0; ;
+            int currentDriver = 0;
             int remainingDrivers = participants.Count;
-            var section = track.Sections.First;
 
-            for (int j = 0; j < track.Sections.Count; j++)
+            //bouw stack op met sections
+            var startGrids = new Stack<Section>();
+
+            foreach (var section in track.Sections)
             {
-                if (section.Value.SectionType == SectionTypes.StartGrid && section.Next.Value.SectionType != SectionTypes.StartGrid)
+                if (section.SectionType == SectionTypes.StartGrid)
                 {
-                    for (int k = 0; k <= startGridAmount; k++)
-                    {
-
-                        if (remainingDrivers > 0)
-                        {
-                            GetSectionData(section.Value).Left = participants[i];
-                            i++;
-                            remainingDrivers--;
-                        }
-                        if (remainingDrivers > 0)
-                        {
-                            GetSectionData(section.Value).Right = participants[i];
-                            i++;
-                            remainingDrivers--;
-                        }
-                        if (remainingDrivers == 0)
-                        {
-                            break;
-                        }
-                        else if (section.Previous.Value.SectionType == SectionTypes.StartGrid)
-                        {
-                            section = section.Previous;
-                        }
-
-                    }
+                    startGrids.Push(section);
                 }
+            }
 
-                if (section.Value.SectionType == SectionTypes.StartGrid)
+            while(startGrids.Count > 0)
+            {
+                var startSection = startGrids.Pop();
+
+                if (remainingDrivers > 0)
                 {
-                    startGridAmount++;
+                    GetSectionData(startSection).Left = participants[currentDriver];
+                    remainingDrivers--;
+                    currentDriver++;
                 }
-                section = section.Next;
+                if (remainingDrivers > 0)
+                {
+                    GetSectionData(startSection).Right = participants[currentDriver];
+                    remainingDrivers--;
+                    currentDriver++;
+                }      
             }
 
         }
+
         public SectionData GetSectionData(Section section)
         {
-
             if (_positions.ContainsKey(section))
             {
                 return _positions[section];
@@ -84,6 +75,7 @@ namespace Controller
                 return _positions[section];
             }
         }
+
         public void RandomizeEquipment()
         {
             foreach (IParticipant participant in Participants)
@@ -94,9 +86,5 @@ namespace Controller
             _random.Next();
         }
 
-        public object GetSectionData(SectionTypes sectionType)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

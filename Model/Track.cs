@@ -11,10 +11,10 @@ namespace Model
         public Track(string name, SectionTypes[] sections)
         {
             Name = name;
-            Sections = convertSectionTypesToLinkedList(sections);
+            Sections = ConvertSectionTypesToLinkedList(sections);
 
         }
-        public LinkedList<Section> convertSectionTypesToLinkedList(SectionTypes[] sections)
+        public LinkedList<Section> ConvertSectionTypesToLinkedList(SectionTypes[] sections)
         {
             LinkedList<Section> Sections = new LinkedList<Section>();
 

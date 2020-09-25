@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using Controller;
 using Model;
 
+
+//TODO: remove list from parameters - add comments
 namespace RaceSim
 {
     public static class TrackVisualisation
     {
 
-        public static string[,,] completeTrack;
-        public static List<SectionBuildingDetails> SectionGridDetails = new List<SectionBuildingDetails>();
+        //3D array with x, y coordinates and array with the drawn trackcomponent
+        public static string[,,] CompleteTrack;
+        //List with the buildingdetails for the completetrack
+        public static List<SectionBuildingDetails> SectionBuildingGridDetails = new List<SectionBuildingDetails>();
+        //Current Track
+        public static Track Track;
 
-        public static void Initialize()
+        public static void Initialize(Track track)
         {
-
+            Track = track;
         }
 
         #region graphics
@@ -32,25 +38,84 @@ namespace RaceSim
 
         private static string[] _cornerLeftHorizontal = { " /--", "/   ", "|   ", "|  /" };
         private static string[] _cornerLefVertical = { "|  \\", "|   ", "\\   ", " \\--" };
-
-
         #endregion
 
-        public static void DrawTrack(Track track)
+        public static void DrawTrack()
         {
+            FillSectionBuildingGridDetailsArray(SectionBuildingGridDetails, Track);
+            UpdateListWithLowestXAndY(SectionBuildingGridDetails, GetLowestXValue(SectionBuildingGridDetails), GetLowestYValue(SectionBuildingGridDetails));
 
-            //drawDrivers(track);
 
-            fillSectionBuildingDetailsArray(SectionGridDetails, track);
-            GetLowestXAndYFromList(SectionGridDetails);
+            CompleteTrack = new string[GetHighestYValue(SectionBuildingGridDetails), GetHighestXValue(SectionBuildingGridDetails), 4];
 
-            completeTrack = new string[GetHighestYValue(), GetHighestXValue(), 4];
-
-            BuildTrackArray(completeTrack, SectionGridDetails);
-            DrawTrackComponentWithCompleteTrackArray(completeTrack);
+            BuildTrackArray(CompleteTrack, SectionBuildingGridDetails);
+            DrawTrackComponentWithCompleteTrackArray(CompleteTrack, SectionBuildingGridDetails);
 
 
         }
+
+        public static void FillSectionBuildingGridDetailsArray(List<SectionBuildingDetails> sectionBuildingDetaisl, Track track)
+        {
+
+            Direction lastDirection = Direction.East;
+            Direction direction = Direction.East;
+
+            int x = 0;
+            int y = 0;
+
+            foreach (var Section in track.Sections)
+            {
+
+                //Determine direction when section is a corner
+                if (GetSectionType(Section) == SectionTypes.LeftCorner)
+                {
+
+                    if (lastDirection == Direction.North)
+                    {
+                        direction = lastDirection + 3;
+                    }
+                    else
+                    {
+                        direction = lastDirection - 1;
+                    }
+                }
+                //Determine direction when section is a corner
+                if (GetSectionType(Section) == SectionTypes.RightCorner)
+                {
+                    if (lastDirection == Direction.West)
+                    {
+                        direction = lastDirection - 3;
+                    }
+                    else
+                    {
+                        direction = lastDirection + 1;
+                    }
+                }
+
+                sectionBuildingDetaisl.Add(new SectionBuildingDetails(Section, x, y, direction));
+
+                switch (direction)
+                {
+                    case Direction.North:
+                        y--;
+                        break;
+                    case Direction.South:
+                        y++;
+                        break;
+                    case Direction.East:
+                        x++;
+                        break;
+                    case Direction.West:
+                        x--;
+                        break;
+
+                }
+
+                lastDirection = direction;
+
+            }
+        }
+
         //BIGGEST FLIPPIN METHOD EVER!!! Used to fill the trackArray
         public static void BuildTrackArray(string[,,] completeTrack, List<SectionBuildingDetails> sectionBuildingDetails)
         {
@@ -198,87 +263,6 @@ namespace RaceSim
 
         }
 
-        public static void fillSectionBuildingDetailsArray(List<SectionBuildingDetails> details, Track track)
-        {
-            Direction lastDirection = Direction.East;
-            Direction direction = Direction.East;
-
-            int x = 0;
-            int y = 0;
-
-            foreach (var Section in track.Sections)
-            {
-
-                //Determine direction when section is a corner
-                if (GetSectionType(Section) == SectionTypes.LeftCorner)
-                {
-
-                    if (lastDirection == Direction.North)
-                    {
-                        direction = lastDirection + 3;
-                    }
-                    else
-                    {
-                        direction = lastDirection - 1;
-                    }
-                }
-                //Determine direction when section is a corner
-                if (GetSectionType(Section) == SectionTypes.RightCorner)
-                {
-                    if (lastDirection == Direction.West)
-                    {
-                        direction = lastDirection - 3;
-                    }
-                    else
-                    {
-                        direction = lastDirection + 1;
-                    }
-                }
-
-                details.Add(new SectionBuildingDetails(Section, x, y, direction));
-
-                switch (direction)
-                {
-                    case Direction.North:
-                        y--;
-                        break;
-                    case Direction.South:
-                        y++;
-                        break;
-                    case Direction.East:
-                        x++;
-                        break;
-                    case Direction.West:
-                        x--;
-                        break;
-
-                }
-
-                lastDirection = direction;
-
-            }
-        }
-
-        public static void GetLowestXAndYFromList(List<SectionBuildingDetails> details)
-        {
-            int lowestX = 0;
-            int lowestY = 0;
-
-            foreach (var detail in details)
-            {
-                if (detail.X < lowestX)
-                {
-                    lowestX = detail.X;
-                }
-                if (detail.Y < lowestY)
-                {
-                    lowestY = detail.Y;
-                }
-            }
-
-            UpdateListWithLowestXAndY(details, lowestX, lowestY);
-        }
-
         public static void UpdateListWithLowestXAndY(List<SectionBuildingDetails> details, int x, int y)
         {
             x = Math.Abs(x);
@@ -310,11 +294,39 @@ namespace RaceSim
             return SectionTypes.Straight;
         }
 
-        public static int GetHighestXValue()
+        public static int GetLowestXValue(List<SectionBuildingDetails> details)
+        {
+            int lowestX = 0;
+
+            foreach (var detail in details)
+            {
+                if (detail.X < lowestX)
+                {
+                    lowestX = detail.X;
+                }
+            }
+            return lowestX;
+        }
+
+        public static int GetLowestYValue(List<SectionBuildingDetails> details)
+        {
+            int lowestY = 0;
+
+            foreach (var detail in details)
+            {
+                if (detail.Y < lowestY)
+                {
+                    lowestY = detail.Y;
+                }
+            }
+            return lowestY;
+        }
+
+        public static int GetHighestXValue(List<SectionBuildingDetails> details)
         {
             int highestX = 0;
 
-            foreach (var sectionBuilding in SectionGridDetails)
+            foreach (var sectionBuilding in details)
             {
                 if (sectionBuilding.X > highestX)
                 {
@@ -324,11 +336,11 @@ namespace RaceSim
             return highestX + 1;
         }
 
-        public static int GetHighestYValue()
+        public static int GetHighestYValue(List<SectionBuildingDetails> details)
         {
             int highestY = 0;
 
-            foreach (var sectionBuilding in SectionGridDetails)
+            foreach (var sectionBuilding in details)
             {
                 if (sectionBuilding.Y > highestY)
                 {
@@ -338,16 +350,16 @@ namespace RaceSim
             return highestY + 1;
         }
 
-        public static void DrawTrackComponentWithCompleteTrackArray(String[,,] completeTrack)
+        public static void DrawTrackComponentWithCompleteTrackArray(String[,,] completeTrack, List<SectionBuildingDetails> detail)
         {
 
-            for (int y = 0; y < GetHighestYValue(); y++)
+            for (int y = 0; y < GetHighestYValue(detail); y++)
             {
 
                 for (int k = 0; k < 4; k++)
                 {
 
-                    for (int x = 0; x < GetHighestXValue(); x++)
+                    for (int x = 0; x < GetHighestXValue(detail); x++)
                     {
                         if (completeTrack[y, x, k] == null)
                         {
