@@ -28,6 +28,33 @@ namespace ControllerTest
             _competition = comp;
         }
 
+        //Test if a there are less than 3 drivers
+        [Test]
+        public void Should_Not_Add_Drivers_If_Less_Than_Three()
+        {
+            _competition.Participants.RemoveAt(2);
+
+            var startGrids = new Stack<Section>();
+            var track = _competition.Tracks.Dequeue();
+
+            var race = new Race(track, _competition.Participants);
+
+            race.AddParticipantsToTrack(track, _competition.Participants);
+
+            foreach (var section in track.Sections)
+            {
+                if (section.SectionType == SectionTypes.StartGrid)
+                {
+                    startGrids.Push(section);
+                }
+            }
+
+            var result = startGrids.Pop();
+
+            Assert.IsTrue(race.GetSectionData(result).Left == null);
+        }
+
+
         //Test if a driver is placed on the first startgrid from the finishline
         [Test]
         public void Should_Add_Driver_To_First_StartGrid()

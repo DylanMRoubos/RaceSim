@@ -17,34 +17,36 @@ namespace RaceSim
         //Current Track
         public static Track Track;
 
-        public static void Initialize(Track track)
+        public static void Initialize()
         {
-            Track = track;
-        }
+            Data.CurrentRace.DriversChanged += OnDriversChanged;
+            
+               }
 
         #region graphics
         private static string[] _startHorizontal = { "----", " 1> ", "2>  ", "----" };
         private static string[] _startVertical = { "|  |", "|^ |", "| ^|", "|  |" };
 
-        private static string[] _finishHorizontal = { "----", "  # ", "  # ", "----" };
+        private static string[] _finishHorizontal = { "----", " 1# ", "2 # ", "----" };
         private static string[] _finishVertical = { "|  |", "| ## |", "|  |", "|  |" };
 
-        private static string[] _trackHorizontal = { "----", "    ", "    ", "----" };
-        private static string[] _trackVertical = { "|  |", "|  |", "|  |", "|  |" };
+        private static string[] _trackHorizontal = { "----", "  1 ", " 2  ", "----" };
+        private static string[] _trackVertical = { "|  |", "|1 |", "| 2|", "|  |" };
 
-        private static string[] _cornerRightHorinzontal = { "--\\ ", "   \\", "   |", "\\  |" };
-        private static string[] _cornerRightVertical = { "/  |", "   |", "   /", "--/ " };
+        private static string[] _cornerRightHorinzontal = { "--\\ ", " 1 \\", "  2|", "\\  |" };
+        private static string[] _cornerRightVertical = { "/  |", " 1 |", "  2/", "--/ " };
 
 
-        private static string[] _cornerLeftHorizontal = { " /--", "/   ", "|   ", "|  /" };
-        private static string[] _cornerLefVertical = { "|  \\", "|   ", "\\   ", " \\--" };
+        private static string[] _cornerLeftHorizontal = { " /--", "/1  ", "|  2", "|  /" };
+        private static string[] _cornerLefVertical = { "|  \\", "| 1 ", "\\  2", " \\--" };
         #endregion
 
-        public static void DrawTrack()
+        public static void DrawTrack(Track track)
         {
+            Track = track;
+
             FillSectionBuildingGridDetailsArray(SectionBuildingGridDetails, Track);
             UpdateListWithLowestXAndY(SectionBuildingGridDetails, GetLowestXValue(SectionBuildingGridDetails), GetLowestYValue(SectionBuildingGridDetails));
-
 
             CompleteTrack = new string[GetHighestYValue(SectionBuildingGridDetails), GetHighestXValue(SectionBuildingGridDetails), 4];
 
@@ -141,7 +143,7 @@ namespace RaceSim
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _startVertical[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_startVertical[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
                 }
@@ -153,7 +155,7 @@ namespace RaceSim
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _trackHorizontal[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_trackHorizontal[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
                     //Vertical
@@ -161,7 +163,7 @@ namespace RaceSim
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _trackVertical[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_trackVertical[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
                 }
@@ -173,7 +175,7 @@ namespace RaceSim
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _finishHorizontal[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_finishHorizontal[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
                     //Vertical
@@ -181,7 +183,7 @@ namespace RaceSim
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _finishVertical[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_finishVertical[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
                 }
@@ -193,7 +195,7 @@ namespace RaceSim
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _cornerRightVertical[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_cornerRightVertical[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
                     //Left -> East
@@ -201,7 +203,7 @@ namespace RaceSim
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _cornerLefVertical[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_cornerLefVertical[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
                     //Left South
@@ -209,14 +211,14 @@ namespace RaceSim
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _cornerLeftHorizontal[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_cornerLeftHorizontal[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
                     else if (Section.Direction == Direction.West)
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _cornerRightHorinzontal[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_cornerRightHorinzontal[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
                 }
@@ -228,7 +230,7 @@ namespace RaceSim
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _cornerLefVertical[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_cornerLefVertical[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
                     //Right -> East
@@ -236,7 +238,7 @@ namespace RaceSim
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _cornerLeftHorizontal[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_cornerLeftHorizontal[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
                     //Right South
@@ -244,7 +246,7 @@ namespace RaceSim
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _cornerRightHorinzontal[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_cornerRightHorinzontal[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
                     //Right West
@@ -252,7 +254,7 @@ namespace RaceSim
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            completeTrack[Section.Y, Section.X, i] = _cornerRightVertical[i];
+                            completeTrack[Section.Y, Section.X, i] = PLaceParticipantsOnTrack(_cornerRightVertical[i], Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
                         }
                     }
 
@@ -378,29 +380,18 @@ namespace RaceSim
 
         public static string PLaceParticipantsOnTrack(string sectionRow, IParticipant participant1, IParticipant participant2)
         {
-
             var returnvalue = sectionRow;
 
-            if (participant1 != null)
-            {
-                returnvalue = returnvalue.Replace("1", $"{participant1.Name.Substring(0, 1)}");
-            }
-            else
-            {
-                returnvalue = returnvalue.Replace("1", " ");
-            }
-
-            if (participant2 != null)
-            {
-                returnvalue = returnvalue.Replace("2", $"{participant2.Name.Substring(0, 1)}");
-            }
-            else
-            {
-                returnvalue = returnvalue.Replace("2", " ");
-            }
-
+            if (participant1 == null) returnvalue = returnvalue.Replace("1", " "); else returnvalue = returnvalue.Replace("1", $"{participant1.Name.Substring(0, 1)}");
+            if (participant2 == null) returnvalue = returnvalue.Replace("2", " "); else returnvalue = returnvalue.Replace("2", $"{participant2.Name.Substring(0, 1)}");
 
             return returnvalue;
+        }
+
+        public static void OnDriversChanged(Object source, DriversChangedEventArgs e)
+        {
+            Console.Clear();
+            DrawTrack(e.Track);
         }
     }
 }

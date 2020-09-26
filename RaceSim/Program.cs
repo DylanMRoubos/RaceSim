@@ -11,21 +11,12 @@ namespace RaceSim
             Data.Initialize();
             Data.NextRace();
 
-            TrackVisualisation.Initialize(Data.CurrentRace.Track);
-            TrackVisualisation.DrawTrack();
+            TrackVisualisation.Initialize();
 
-            Data.NextRace();
-            TrackVisualisation.Initialize(Data.CurrentRace.Track);
-            TrackVisualisation.DrawTrack();
-
-            Data.NextRace();
-            TrackVisualisation.Initialize(Data.CurrentRace.Track);
-            TrackVisualisation.DrawTrack();
-
-            //for (; ; )
-            //{
-            //    Thread.Sleep(100);
-            //}
+            for (; ; )
+            {
+                Thread.Sleep(15000);
+            }
 
         }
     }

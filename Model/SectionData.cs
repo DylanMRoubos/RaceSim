@@ -17,7 +17,8 @@ namespace Model
         }
         public SectionData()
         {
-
+            this.DistanceLeft = 100;
+            this.DistanceRight = 100;
         }
     }
 }
