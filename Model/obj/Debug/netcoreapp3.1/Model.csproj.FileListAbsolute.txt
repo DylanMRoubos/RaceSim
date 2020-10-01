@@ -10,9 +10,9 @@
 /Users/dylanroubos/Projects/RaceSim/Model/bin/Debug/netcoreapp3.1/Model.deps.json
 /Users/dylanroubos/Projects/RaceSim/Model/bin/Debug/netcoreapp3.1/Model.dll
 /Users/dylanroubos/Projects/RaceSim/Model/bin/Debug/netcoreapp3.1/Model.pdb
+/Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.csprojAssemblyReference.cache
 /Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.AssemblyInfoInputs.cache
 /Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.AssemblyInfo.cs
 /Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.csproj.CoreCompileInputs.cache
 /Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.dll
 /Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.pdb
-/Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.csprojAssemblyReference.cache

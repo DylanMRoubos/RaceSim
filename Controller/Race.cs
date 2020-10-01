@@ -12,12 +12,14 @@ namespace Controller
         public DateTime StartTime { get; set; }
         public Random _random { get; set; }
         private Timer timer;
-        private int amountOfLaps = 4;
-        private int driversRemoved = 0;
+        private int amountOfLaps = 2;
+        private int driversRemoved;
 
         public delegate void onDriversChanged(object Sender, DriversChangedEventArgs dirversChangedEventArgs);
+        public delegate void onNextRace(object Sender, EventArgs nextRaceEventArgs);
 
         public event onDriversChanged DriversChanged;
+        public event onNextRace NextRace;
 
         private Dictionary<Section, SectionData> _positions;
         private Dictionary<IParticipant, int> DrivenRounds = new Dictionary<IParticipant, int>();
@@ -26,6 +28,7 @@ namespace Controller
         {
             this.Track = Track;
             this.Participants = Participants;
+            driversRemoved = 0;
 
             _random = new Random(DateTime.Now.Millisecond);
             RandomizeEquipment();
@@ -36,7 +39,7 @@ namespace Controller
             AddParticipantsToTrack(Track, Participants);
             fillDriverDictionaray();
 
-            timer = new Timer(50);
+            timer = new Timer(200);
             timer.Elapsed += OnTimedEvent;
             Start();
         }
@@ -45,15 +48,17 @@ namespace Controller
         {
         }
 
+        
+
         public void CheckIfDriverCrossedFinish(Section section)
         {
-            if(section.SectionType == SectionTypes.Finish)
+            if (section.SectionType == SectionTypes.Finish)
             {
                 SectionData currentSectionData = GetSectionData(section);
 
-                if(currentSectionData.Left != null)
+                if (currentSectionData.Left != null)
                 {
-                   DrivenRounds[currentSectionData.Left] += 1;
+                    DrivenRounds[currentSectionData.Left] += 1;
 
                     if (DrivenRounds[currentSectionData.Left] == amountOfLaps + 1)
                     {
@@ -62,7 +67,7 @@ namespace Controller
                         driversRemoved++;
                     }
                 }
-                if(currentSectionData.Right != null)
+                if (currentSectionData.Right != null)
                 {
                     DrivenRounds[currentSectionData.Right] += 1;
                     if (DrivenRounds[currentSectionData.Right] == amountOfLaps + 1)
@@ -77,12 +82,11 @@ namespace Controller
 
         public void cleanReferences()
         {
-            Data.CurrentRace.DriversChanged -= DriversChanged;
+            DriversChanged = null;
         }
-
         public void fillDriverDictionaray()
         {
-            foreach(IParticipant p in Participants)
+            foreach (IParticipant p in Participants)
             {
                 DrivenRounds.Add(p, 0);
             }
@@ -113,14 +117,15 @@ namespace Controller
                     //Reset values on current tile
                     sectionValue.Left = null;
                     sectionValue.DistanceLeft = 100;
-                } else
+                }
+                else
                 {
                     nextSectionValue.Left = sectionValue.Right;
                     nextSectionValue.DistanceLeft += sectionValue.DistanceRight;
                     //Reset values on current tile
                     sectionValue.Right = null;
                     sectionValue.DistanceRight = 100;
-                }     
+                }
                 return true;
             }
             else if (nextSectionValue.Right == null)
@@ -141,7 +146,7 @@ namespace Controller
                     sectionValue.DistanceRight = 100;
                 }
 
-                
+
                 return true;
             }
 
@@ -151,18 +156,53 @@ namespace Controller
             }
         }
 
+        private bool brokenToggler(IParticipant participant)
+        {
+            //if not broken
+            if(!participant.Equipment.IsBroken)
+            {
+                //create chance to be broke
+                if(_random.Next(1, 100) == 1)
+                {
+                    participant.Equipment.IsBroken = true;
+                    return true;
+                }
+                //Car stays healthy
+                else
+                {
+                    return false;
+
+                }
+            }
+            //Create change to be repaired
+            else
+            {
+                //Create chance to be repaired
+                if (_random.Next(1, 10) == 1)
+                {
+                    participant.Equipment.IsBroken = false;
+                    //Quality will be lowered if possible
+                    if (participant.Equipment.Quality > 1) participant.Equipment.Quality -= 1;
+                    return false;
+                }
+                //Car will still be broken
+                else
+                {
+                    return true;
+
+                }
+            }
+        }
+
         //Make more suffisticated
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-
             //Loop through sections
             LinkedListNode<Section> section = Track.Sections.Last;
             SectionData sectionValue = GetSectionData(section.Value);
 
-
             LinkedListNode<Section> previousSection = section;
             SectionData previousSectionValue = GetSectionData(previousSection.Value);
-
 
             for (int i = 0; i < Track.Sections.Count; i++)
             {
@@ -171,8 +211,11 @@ namespace Controller
 
                     if (sectionValue.Left != null)
                     {
-                        sectionValue.DistanceLeft -= calculateDistanceForCar(sectionValue.Left);
 
+                        if(!brokenToggler(sectionValue.Left))
+                        {
+                            sectionValue.DistanceLeft -= calculateDistanceForCar(sectionValue.Left);
+                        }                       
                         if (sectionValue.DistanceLeft < 0)
                         {
                             if (!DriverMovedToNextSection(section, section.Next, 0))
@@ -185,8 +228,10 @@ namespace Controller
                     }
                     if (sectionValue.Right != null)
                     {
-                        sectionValue.DistanceRight -= calculateDistanceForCar(sectionValue.Right);
-
+                        if (!brokenToggler(sectionValue.Right))
+                        {
+                            sectionValue.DistanceRight -= calculateDistanceForCar(sectionValue.Right);
+                        }                      
                         if (sectionValue.DistanceRight < 0)
                         {
                             if (!DriverMovedToNextSection(section, section.Next, 1))
@@ -221,8 +266,8 @@ namespace Controller
 
             DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
 
-            if (driversRemoved  == Participants.Count)
-            {                                
+            if (driversRemoved == Participants.Count)
+            {
                 Stop();
             }
 
@@ -230,7 +275,6 @@ namespace Controller
 
         public int calculateDistanceForCar(IParticipant driver)
         {
-            //Console.WriteLine(driver.Name + " " + driver.Equipment.Performance * driver.Equipment.Quality * driver.Equipment.Speed);
             return driver.Equipment.Performance * driver.Equipment.Quality * driver.Equipment.Speed;
         }
 
@@ -244,7 +288,11 @@ namespace Controller
         {
             //timer.AutoReset = true;
             timer.Enabled = false;
+            cleanReferences();
             Console.WriteLine("Stopped");
+
+            Data.NextRace();
+            NextRace.Invoke(this, new EventArgs());
         }
 
 

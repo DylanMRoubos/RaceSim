@@ -20,7 +20,7 @@ namespace RaceSim
         public static void Initialize()
         {
             Data.CurrentRace.DriversChanged += OnDriversChanged;
-            
+            Data.CurrentRace.NextRace += NextRace;
         }
 
         #region graphics
@@ -122,7 +122,7 @@ namespace RaceSim
 
         //BIGGEST FLIPPIN METHOD EVER!!! Used to fill the trackArray
         public static void BuildTrackArray(string[,,] completeTrack, List<SectionBuildingDetails> sectionBuildingDetails)
-        { 
+        {
             foreach (var Section in sectionBuildingDetails)
             {
                 //Start track horizontal & vertical 
@@ -385,9 +385,36 @@ namespace RaceSim
         {
             var returnvalue = sectionRow;
 
-            if (participant1 == null) returnvalue = returnvalue.Replace("1", " "); else returnvalue = returnvalue.Replace("1", $"{participant1.Name.Substring(0, 1)}");
-            if (participant2 == null) returnvalue = returnvalue.Replace("2", " "); else returnvalue = returnvalue.Replace("2", $"{participant2.Name.Substring(0, 1)}");
-
+            if (participant1 == null)
+            {
+                returnvalue = returnvalue.Replace("1", " ");
+            }
+            else
+            {
+                if(participant1.Equipment.IsBroken)
+                {
+                    returnvalue = returnvalue.Replace("1", "x");
+                } else
+                {
+                    returnvalue = returnvalue.Replace("1", $"{participant1.Name.Substring(0, 1)}");
+                }
+               
+            }
+            if (participant2 == null)
+            {
+                returnvalue = returnvalue.Replace("2", " ");
+            }
+            else
+            {
+                if (participant2.Equipment.IsBroken)
+                {
+                    returnvalue = returnvalue.Replace("2", "x");
+                }
+                else
+                {
+                    returnvalue = returnvalue.Replace("2", $"{participant2.Name.Substring(0, 1)}");
+                }
+            }
             return returnvalue;
         }
 
@@ -395,6 +422,10 @@ namespace RaceSim
         {
             Console.Clear();
             DrawTrack(e.Track);
+        }
+        public static void NextRace(Object source, EventArgs e)
+        {
+            Initialize();
         }
     }
 }
