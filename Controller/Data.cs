@@ -19,10 +19,10 @@ namespace Controller
         }
         public static void AddParticipants()
         {
-            Competition.Participants.Add(new Driver("Erik", 0, new Car(0, 0, 50, false), TeamColors.Grey));
-            Competition.Participants.Add(new Driver("Thomas", 0, new Car(0, 0, 0, false), TeamColors.Yellow));
-            Competition.Participants.Add(new Driver("Herman", 0, new Car(0, 0, 0, false), TeamColors.Green));
-            Competition.Participants.Add(new Driver("Max", 0, new Car(0, 0, 0, false), TeamColors.Red));
+            Competition.Participants.Add(new Driver("Erik", 0, new Car(0, 0, 8, false), TeamColors.Grey));
+            Competition.Participants.Add(new Driver("Thomas", 0, new Car(0, 0, 10, false), TeamColors.Yellow));
+            Competition.Participants.Add(new Driver("Herman", 0, new Car(0, 0, 6, false), TeamColors.Green));
+            Competition.Participants.Add(new Driver("Max", 0, new Car(0, 0, 5, false), TeamColors.Red));
             //Competition.Participants.Add(new Driver("Rob", 0, new Car(0, 0, 0, false), TeamColors.Red));
             //Competition.Participants.Add(new Driver("Jordy", 0, new Car(0, 0, 0, false), TeamColors.Red));
             //Competition.Participants.Add(new Driver("Max", 0, new Car(0, 0, 0, false), TeamColors.Red));
@@ -35,7 +35,7 @@ namespace Controller
             SectionTypes[] sections2 = { SectionTypes.Straight, SectionTypes.StartGrid, SectionTypes.StartGrid, SectionTypes.LeftCorner, SectionTypes.RightCorner, SectionTypes.RightCorner , SectionTypes.Straight, SectionTypes.Straight, SectionTypes.RightCorner , SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.RightCorner };
             SectionTypes[] sections3 = { SectionTypes.StartGrid, SectionTypes.StartGrid, SectionTypes.Finish, SectionTypes.LeftCorner, SectionTypes.LeftCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.LeftCorner, SectionTypes.LeftCorner };
 
-            Track track1 = new Track("Monaco", sections1);
+            Track track1 = new Track("Monaco", sections3);
             Track track2 = new Track("Zandvoord", sections2);
             Track track3 = new Track("Nascar", sections3);
             Competition.Tracks.Enqueue(track1);

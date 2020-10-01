@@ -10,8 +10,11 @@ namespace RaceSim
         {
             Data.Initialize();
             Data.NextRace();
+            //Data.NextRace();
+
 
             TrackVisualisation.Initialize();
+            TrackVisualisation.DrawTrack(Data.CurrentRace.Track);
 
             for (; ; )
             {

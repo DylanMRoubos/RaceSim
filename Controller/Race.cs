@@ -12,12 +12,15 @@ namespace Controller
         public DateTime StartTime { get; set; }
         public Random _random { get; set; }
         private Timer timer;
+        private int amountOfLaps = 4;
+        private int driversRemoved = 0;
 
         public delegate void onDriversChanged(object Sender, DriversChangedEventArgs dirversChangedEventArgs);
 
         public event onDriversChanged DriversChanged;
 
         private Dictionary<Section, SectionData> _positions;
+        private Dictionary<IParticipant, int> DrivenRounds = new Dictionary<IParticipant, int>();
 
         public Race(Track Track, List<IParticipant> Participants)
         {
@@ -27,48 +30,208 @@ namespace Controller
             _random = new Random(DateTime.Now.Millisecond);
             RandomizeEquipment();
 
-            timer = new Timer(1500);
-            timer.Elapsed += OnTimedEvent;
-            Start();
-
-
             _positions = new Dictionary<Section, SectionData>();
 
+
             AddParticipantsToTrack(Track, Participants);
+            fillDriverDictionaray();
+
+            timer = new Timer(50);
+            timer.Elapsed += OnTimedEvent;
+            Start();
         }
 
         public Race()
         {
         }
 
+        public void CheckIfDriverCrossedFinish(Section section)
+        {
+            if(section.SectionType == SectionTypes.Finish)
+            {
+                SectionData currentSectionData = GetSectionData(section);
+
+                if(currentSectionData.Left != null)
+                {
+                   DrivenRounds[currentSectionData.Left] += 1;
+
+                    if (DrivenRounds[currentSectionData.Left] == amountOfLaps + 1)
+                    {
+                        currentSectionData.Left = null;
+                        currentSectionData.DistanceLeft = 100;
+                        driversRemoved++;
+                    }
+                }
+                if(currentSectionData.Right != null)
+                {
+                    DrivenRounds[currentSectionData.Right] += 1;
+                    if (DrivenRounds[currentSectionData.Right] == amountOfLaps + 1)
+                    {
+                        currentSectionData.Right = null;
+                        currentSectionData.DistanceRight = 100;
+                        driversRemoved++;
+                    }
+                }
+            }
+        }
+
+        public void cleanReferences()
+        {
+            Data.CurrentRace.DriversChanged -= DriversChanged;
+        }
+
+        public void fillDriverDictionaray()
+        {
+            foreach(IParticipant p in Participants)
+            {
+                DrivenRounds.Add(p, 0);
+            }
+        }
+        public bool DriverMovedToNextSection(LinkedListNode<Section> section, LinkedListNode<Section> nextSection, int LeftRight)
+        {
+
+            SectionData sectionValue = GetSectionData(section.Value);
+            SectionData nextSectionValue;
+
+            //Check if last section
+            if (Track.Sections.Last == section)
+            {
+                nextSectionValue = GetSectionData(Track.Sections.First.Value);
+            }
+            else
+            {
+                nextSectionValue = GetSectionData(nextSection.Value);
+            }
+
+
+            if (nextSectionValue.Left == null)
+            {
+                if (LeftRight == 0)
+                {
+                    nextSectionValue.Left = sectionValue.Left;
+                    nextSectionValue.DistanceLeft += sectionValue.DistanceLeft;
+                    //Reset values on current tile
+                    sectionValue.Left = null;
+                    sectionValue.DistanceLeft = 100;
+                } else
+                {
+                    nextSectionValue.Left = sectionValue.Right;
+                    nextSectionValue.DistanceLeft += sectionValue.DistanceRight;
+                    //Reset values on current tile
+                    sectionValue.Right = null;
+                    sectionValue.DistanceRight = 100;
+                }     
+                return true;
+            }
+            else if (nextSectionValue.Right == null)
+            {
+                if (LeftRight == 0)
+                {
+                    nextSectionValue.Right = sectionValue.Left;
+                    nextSectionValue.DistanceRight += sectionValue.DistanceLeft;
+                    sectionValue.Left = null;
+                    sectionValue.DistanceLeft = 100;
+                }
+                else
+                {
+                    nextSectionValue.Right = sectionValue.Right;
+                    nextSectionValue.DistanceRight += sectionValue.DistanceRight;
+                    //Reset values on current tile
+                    sectionValue.Right = null;
+                    sectionValue.DistanceRight = 100;
+                }
+
+                
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        //Make more suffisticated
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            var currentSection = Track.Sections.First;
+
+            //Loop through sections
+            LinkedListNode<Section> section = Track.Sections.Last;
+            SectionData sectionValue = GetSectionData(section.Value);
+
+
+            LinkedListNode<Section> previousSection = section;
+            SectionData previousSectionValue = GetSectionData(previousSection.Value);
+
 
             for (int i = 0; i < Track.Sections.Count; i++)
             {
-                if (GetSectionData(currentSection.Value).Left != null)
+                if (sectionValue.Left != null || sectionValue.Right != null)
                 {
 
-                    GetSectionData(currentSection.Value).DistanceLeft = GetSectionData(currentSection.Value).DistanceLeft - calculateDistanceForCar(GetSectionData(currentSection.Value).Left);
-
-                    if (GetSectionData(currentSection.Value).DistanceLeft < 0 && GetSectionData(currentSection.Next.Value).Left == null)
+                    if (sectionValue.Left != null)
                     {
-                        GetSectionData(currentSection.Next.Value).Left = GetSectionData(currentSection.Value).Left;
-                        GetSectionData(currentSection.Value).Left = null;
+                        sectionValue.DistanceLeft -= calculateDistanceForCar(sectionValue.Left);
+
+                        if (sectionValue.DistanceLeft < 0)
+                        {
+                            if (!DriverMovedToNextSection(section, section.Next, 0))
+                            {
+                                sectionValue.DistanceLeft = 0;
+                            }
+                        }
+
 
                     }
+                    if (sectionValue.Right != null)
+                    {
+                        sectionValue.DistanceRight -= calculateDistanceForCar(sectionValue.Right);
 
-                    //Console.WriteLine("Driver: " + GetSectionData(section).Left.Name + "\n Performance: " + GetSectionData(section).Left.Equipment.Performance + "\n" + "Speed: " + GetSectionData(section).Left.Equipment.Speed + "\n" + "Quality: " + GetSectionData(section).Left.Equipment.Quality);
+                        if (sectionValue.DistanceRight < 0)
+                        {
+                            if (!DriverMovedToNextSection(section, section.Next, 1))
+                            {
+                                sectionValue.DistanceRight = 0;
+                            }
+                        }
+                    }
                 }
-                DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
-                currentSection = currentSection.Next;
-            }          
+
+                if (previousSection.Previous != null)
+                {
+                    previousSection = previousSection.Previous;
+                    previousSectionValue = GetSectionData(previousSection.Value);
+                    section = previousSection;
+                    sectionValue = GetSectionData(previousSection.Value);
+                }
+                else
+                {
+                    section = previousSection;
+                    sectionValue = GetSectionData(previousSection.Value);
+
+                    previousSection = Track.Sections.First;
+                    previousSectionValue = GetSectionData(previousSection.Value);
+
+                }
+
+                //nextSection = nextSection.Next;
+                //Console.Clear();
+                CheckIfDriverCrossedFinish(section.Value);
+            }
+
+            DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
+
+            if (driversRemoved  == Participants.Count)
+            {                                
+                Stop();
+            }
+
         }
 
         public int calculateDistanceForCar(IParticipant driver)
         {
-            return driver.Equipment.Performance / driver.Equipment.Quality * driver.Equipment.Speed;
+            //Console.WriteLine(driver.Name + " " + driver.Equipment.Performance * driver.Equipment.Quality * driver.Equipment.Speed);
+            return driver.Equipment.Performance * driver.Equipment.Quality * driver.Equipment.Speed;
         }
 
 
@@ -77,6 +240,13 @@ namespace Controller
             //timer.AutoReset = true;
             timer.Enabled = true;
         }
+        public void Stop()
+        {
+            //timer.AutoReset = true;
+            timer.Enabled = false;
+            Console.WriteLine("Stopped");
+        }
+
 
         public void AddParticipantsToTrack(Track track, List<IParticipant> participants)
         {
@@ -133,7 +303,7 @@ namespace Controller
             foreach (IParticipant participant in Participants)
             {
                 participant.Equipment.Quality = _random.Next(1, 10);
-                participant.Equipment.Performance = _random.Next(1, 10);
+                participant.Equipment.Performance = _random.Next(1, 5);
             }
             _random.Next();
         }

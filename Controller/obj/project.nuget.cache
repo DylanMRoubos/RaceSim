@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+GmVfE/VueWO0xuLuPqOxUvfxZWYhCUk9VvZGiRnUUEIGrN584QKvkwo+WBePLU8g+rSromfPjKae97xGXkyrw==",
+  "dgSpecHash": "qrdO38cRp+ZNgNto3FYKZp/PZARB3Uxo83ag0hDXGReG5aIOhs3Mz846gyffbWCeLusgR/G0kL1gv4QUor0HSg==",
   "success": true,
-  "projectFilePath": "\\\\vmware-host\\Shared Folders\\dylanroubos On My Mac\\Projects\\RaceSim\\Controller\\Controller.csproj",
+  "projectFilePath": "/Users/dylanroubos/Projects/RaceSim/Controller/Controller.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -13,7 +13,7 @@ namespace RaceSim
         //3D array with x, y coordinates and array with the drawn trackcomponent
         public static string[,,] CompleteTrack;
         //List with the buildingdetails for the completetrack
-        public static List<SectionBuildingDetails> SectionBuildingGridDetails = new List<SectionBuildingDetails>();
+        public static List<SectionBuildingDetails> SectionBuildingGridDetails;
         //Current Track
         public static Track Track;
 
@@ -21,7 +21,7 @@ namespace RaceSim
         {
             Data.CurrentRace.DriversChanged += OnDriversChanged;
             
-               }
+        }
 
         #region graphics
         private static string[] _startHorizontal = { "----", " 1> ", "2>  ", "----" };
@@ -44,6 +44,8 @@ namespace RaceSim
         public static void DrawTrack(Track track)
         {
             Track = track;
+
+            SectionBuildingGridDetails = new List<SectionBuildingDetails>();
 
             FillSectionBuildingGridDetailsArray(SectionBuildingGridDetails, Track);
             UpdateListWithLowestXAndY(SectionBuildingGridDetails, GetLowestXValue(SectionBuildingGridDetails), GetLowestYValue(SectionBuildingGridDetails));
@@ -120,7 +122,7 @@ namespace RaceSim
 
         //BIGGEST FLIPPIN METHOD EVER!!! Used to fill the trackArray
         public static void BuildTrackArray(string[,,] completeTrack, List<SectionBuildingDetails> sectionBuildingDetails)
-        {
+        { 
             foreach (var Section in sectionBuildingDetails)
             {
                 //Start track horizontal & vertical 
@@ -280,6 +282,7 @@ namespace RaceSim
 
         public static SectionTypes GetSectionType(Section section)
         {
+            // return section.SectionType;
             switch (section.SectionType)
             {
                 case SectionTypes.StartGrid:
