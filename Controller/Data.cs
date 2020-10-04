@@ -48,7 +48,7 @@ namespace Controller
             Track track4 = new Track("Nascar", sections4);
             Track oostendorp = new Track("Oostendorp", sections5);
 
-            Competition.Tracks.Enqueue(oostendorp);
+            //Competition.Tracks.Enqueue(oostendorp);
             Competition.Tracks.Enqueue(track2);
             Competition.Tracks.Enqueue(track3);
             Competition.Tracks.Enqueue(track4);

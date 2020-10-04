@@ -48,7 +48,7 @@ namespace Controller
         {
         }
 
-        
+
 
         public void CheckIfDriverCrossedFinish(Section section)
         {
@@ -107,9 +107,48 @@ namespace Controller
                 nextSectionValue = GetSectionData(nextSection.Value);
             }
 
+            //Check if left or right driver
+            if (LeftRight == 0)
+            {
 
+                //Check if left driver is crossing finish
+                if (section.Value.SectionType == SectionTypes.Finish)
+                {
+                    DrivenRounds[sectionValue.Left] += 1;
+
+                    if (DrivenRounds[sectionValue.Left] == amountOfLaps + 1)
+                    {
+                        sectionValue.Left = null;
+                        sectionValue.DistanceLeft = 100;
+                        driversRemoved++;
+
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                //Check if left driver is crossing finish
+                if (section.Value.SectionType == SectionTypes.Finish)
+                {
+                    DrivenRounds[sectionValue.Right] += 1;
+
+                    if (DrivenRounds[sectionValue.Right] == amountOfLaps + 1)
+                    {
+                        sectionValue.Right = null;
+                        sectionValue.DistanceRight = 100;
+                        driversRemoved++;
+
+                        return true;
+                    }
+                }
+            }
+
+
+            //Move right driver
             if (nextSectionValue.Left == null)
             {
+                //Move to left section
                 if (LeftRight == 0)
                 {
                     nextSectionValue.Left = sectionValue.Left;
@@ -118,6 +157,7 @@ namespace Controller
                     sectionValue.Left = null;
                     sectionValue.DistanceLeft = 100;
                 }
+                //Move to right section
                 else
                 {
                     nextSectionValue.Left = sectionValue.Right;
@@ -128,8 +168,10 @@ namespace Controller
                 }
                 return true;
             }
+            //Move left driver
             else if (nextSectionValue.Right == null)
             {
+                //Move to left section
                 if (LeftRight == 0)
                 {
                     nextSectionValue.Right = sectionValue.Left;
@@ -137,6 +179,7 @@ namespace Controller
                     sectionValue.Left = null;
                     sectionValue.DistanceLeft = 100;
                 }
+                //Move to right section
                 else
                 {
                     nextSectionValue.Right = sectionValue.Right;
@@ -159,10 +202,10 @@ namespace Controller
         private bool brokenToggler(IParticipant participant)
         {
             //if not broken
-            if(!participant.Equipment.IsBroken)
+            if (!participant.Equipment.IsBroken)
             {
                 //create chance to be broke
-                if(_random.Next(1, 100) == 1)
+                if (_random.Next(1, 100) == 1)
                 {
                     participant.Equipment.IsBroken = true;
                     return true;
@@ -212,10 +255,10 @@ namespace Controller
                     if (sectionValue.Left != null)
                     {
 
-                        if(!brokenToggler(sectionValue.Left))
+                        if (!brokenToggler(sectionValue.Left))
                         {
                             sectionValue.DistanceLeft -= calculateDistanceForCar(sectionValue.Left);
-                        }                       
+                        }
                         if (sectionValue.DistanceLeft < 0)
                         {
                             if (!DriverMovedToNextSection(section, section.Next, 0))
@@ -231,7 +274,7 @@ namespace Controller
                         if (!brokenToggler(sectionValue.Right))
                         {
                             sectionValue.DistanceRight -= calculateDistanceForCar(sectionValue.Right);
-                        }                      
+                        }
                         if (sectionValue.DistanceRight < 0)
                         {
                             if (!DriverMovedToNextSection(section, section.Next, 1))
@@ -261,8 +304,9 @@ namespace Controller
 
                 //nextSection = nextSection.Next;
                 //Console.Clear();
-                CheckIfDriverCrossedFinish(section.Value);
+                
             }
+            //CheckIfDriverCrossedFinish(section.Value);
 
             DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
 
