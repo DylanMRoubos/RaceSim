@@ -5,8 +5,10 @@ namespace Model
     {
         public IParticipant Left { get; set; }
         public int DistanceLeft { get; set; }
+        public DateTime startTimeLeft { get; set; }
         public IParticipant Right { get; set; }
         public int DistanceRight { get; set; }
+        public DateTime startTimeRight { get; set; }
 
         public SectionData(IParticipant left, int DistanceLeft, IParticipant right, int DistanceRight)
         {

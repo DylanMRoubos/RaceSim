@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Model
@@ -7,19 +8,55 @@ namespace Model
     {
         public List<IParticipant> Participants { get; set; }
         public Queue<Track> Tracks { get; set; }
+        public RaceDetails<DriverPoints> DriverPoints {get; set;}
 
         public Competition(List<IParticipant> Participants, Queue<Track> Tracks)
         {
             Participants = new List<IParticipant>();
             this.Participants = Participants;
             this.Tracks = Tracks;
-
+            DriverPoints = new RaceDetails<DriverPoints>();
         }
 
         public Competition()
         {
             Participants = new List<IParticipant>();
             Tracks = new Queue<Track>();
+            DriverPoints = new RaceDetails<DriverPoints>();
+        }
+
+        public void AddPointsToDirvers(Dictionary<int, string> FinishPosition)
+        {
+            int points = 0;
+
+            foreach (KeyValuePair<int, string> position in  FinishPosition)
+            {
+                switch (position.Key)
+                {
+                    case 1:
+                        points = 25;
+                        break;
+                    case 2:
+                        points = 20;
+                        break;
+                    case 3:
+                        points = 18;
+                        break;
+                    case 4:
+                        points = 15;
+                        break;
+                    case 5:
+                        points = 10;
+                        break;
+                    case 6:
+                        points = 5;
+                        break;
+                    default:
+                        points = 0;
+                        break;
+                }
+                DriverPoints.addItemToList(new DriverPoints(position.Value, points));
+            }
         }
 
         public Track NextTrack()
