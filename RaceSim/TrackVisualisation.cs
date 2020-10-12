@@ -379,6 +379,7 @@ namespace RaceSim
                 }
 
             }
+            Console.WriteLine($"Current highest points: {Data.Competition.DriverPoints.GetHighest()}");
         }
 
         public static string PLaceParticipantsOnTrack(string sectionRow, IParticipant participant1, IParticipant participant2)

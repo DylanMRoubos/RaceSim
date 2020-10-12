@@ -5,8 +5,12 @@ namespace Model
 {
     public interface IDriverName
     {
+        //Name of driver
         public string Name { get; set; }
 
-        public void Add(List<IDriverName> list);
+        //Method to Add data to list
+        public void Add<T>(List<T> list) where T : class, IDriverName;
+
+        public string GetBest<T>(List<T> list) where T : class, IDriverName;
     }
 }

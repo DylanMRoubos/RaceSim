@@ -19,18 +19,37 @@ namespace Model
             Section = section;
         }
 
-        public void Add(List<IDriverName> list)
+        public void Add<T>(List<T> list) where T : class, IDriverName
         {
             foreach (var driver in list)
             {
-                var currentDriver = (DriverSectionTimes)driver;
+                var currentDriver = driver as DriverSectionTimes;
                 if (currentDriver.Name == Name && currentDriver.Section == Section)
                 {
                     currentDriver.Time = Time;
                     return;
                 }
             }
-            list.Add(this);
+            list.Add(this as T);
+        }
+
+        public string GetBest<T>(List<T> list) where T : class, IDriverName
+        {
+            TimeSpan FastestSector = this.Time;
+            DriverSectionTimes DriverSectionTimes = this;
+
+            foreach (var driver in list)
+            {
+                var currentDriver = driver as DriverSectionTimes;
+
+                if (currentDriver.Time > Time)
+                {
+                    Time = currentDriver.Time;
+                    DriverSectionTimes = currentDriver;
+                }
+            }
+
+            return DriverSectionTimes.Name;
         }
     }
 }

@@ -55,8 +55,9 @@ namespace Model
                         points = 0;
                         break;
                 }
-                DriverPoints.addItemToList(new DriverPoints(position.Value, points));
+                DriverPoints.AddItemToList(new DriverPoints(position.Value, points));
             }
+            Console.WriteLine(DriverPoints.GetHighest());
         }
 
         public Track NextTrack()

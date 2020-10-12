@@ -18,18 +18,38 @@ namespace Model
             BrokenDownAmount = brokenDownAmount;
         }
 
-        public void Add(List<IDriverName> list)
+        public void Add<T>(List<T> list) where T : class, IDriverName
         {
-            foreach(var driver in list)
+            foreach (var driver in list)
             {
-                var currentDriver = (DriverBrokenDownAmount) driver;
-                if(driver.Name == Name)
+                var currentDriver = driver as DriverBrokenDownAmount;
+
+                if (driver.Name == Name)
                 {
                     currentDriver.BrokenDownAmount++;
                     return;
                 }
-            }            
-            list.Add(this);            
+            }
+            list.Add(this as T);
+        }
+
+        public string GetBest<T>(List<T> list) where T : class, IDriverName
+        {
+            int MostBrokenDown = BrokenDownAmount;
+            DriverBrokenDownAmount BrokenDownAmountObj = this;
+
+            foreach (var driver in list)
+            {
+                var currentDriver = driver as DriverBrokenDownAmount;
+
+                if (currentDriver.BrokenDownAmount > BrokenDownAmount)
+                {
+                    BrokenDownAmount = currentDriver.BrokenDownAmount;
+                    BrokenDownAmountObj = currentDriver;
+                }
+            }
+
+            return BrokenDownAmountObj.Name;
         }
     }
 }

@@ -105,12 +105,12 @@ namespace Controller
         //Add distance driven to a driver in the generic list
         public void AddDrivenDistance(string drivername, int distance)
         {
-            distanceDriven.addItemToList(new DriverDistanceDriven(drivername, distance));
+            distanceDriven.AddItemToList(new DriverDistanceDriven(drivername, distance));
         }
         //Add driver boken down amount  in the generic list
         public void AddDriverBrokenDown(string drivername)
         {
-            brokenDownAmount.addItemToList(new DriverBrokenDownAmount(drivername, 1));
+            brokenDownAmount.AddItemToList(new DriverBrokenDownAmount(drivername, 1));
         }
 
         //TODO: make more elegent this methods
@@ -141,7 +141,7 @@ namespace Controller
 
                     if (DrivenRounds[sectionValue.Left] == amountOfLaps + 1)
                     {
-                        sectionTimes.addItemToList(new DriverSectionTimes(sectionValue.Left.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
+                        sectionTimes.AddItemToList(new DriverSectionTimes(sectionValue.Left.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
 
                         FinishPosition.Add(FinishPosition.Count + 1, sectionValue.Left.Name);
                         sectionValue.Left = null;
@@ -160,7 +160,7 @@ namespace Controller
 
                     if (DrivenRounds[sectionValue.Right] == amountOfLaps + 1)
                     {
-                        sectionTimes.addItemToList(new DriverSectionTimes(sectionValue.Right.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
+                        sectionTimes.AddItemToList(new DriverSectionTimes(sectionValue.Right.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
 
                         FinishPosition.Add(FinishPosition.Count + 1, sectionValue.Right.Name);
                         sectionValue.Right = null;
@@ -179,7 +179,7 @@ namespace Controller
                 //Move the left driver
                 if (LeftRight == 0)
                 {
-                    sectionTimes.addItemToList(new DriverSectionTimes(sectionValue.Left.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
+                    sectionTimes.AddItemToList(new DriverSectionTimes(sectionValue.Left.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
 
                     nextSectionValue.Left = sectionValue.Left;
                     nextSectionValue.DistanceLeft += sectionValue.DistanceLeft;
@@ -191,7 +191,7 @@ namespace Controller
                 // Move the right driver
                 else
                 {
-                    sectionTimes.addItemToList(new DriverSectionTimes(sectionValue.Right.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
+                    sectionTimes.AddItemToList(new DriverSectionTimes(sectionValue.Right.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
 
 
                     nextSectionValue.Left = sectionValue.Right;
@@ -209,7 +209,7 @@ namespace Controller
                 //Move the left driver
                 if (LeftRight == 0)
                 {
-                    sectionTimes.addItemToList(new DriverSectionTimes(sectionValue.Left.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
+                    sectionTimes.AddItemToList(new DriverSectionTimes(sectionValue.Left.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
 
                     nextSectionValue.Right = sectionValue.Left;
                     nextSectionValue.DistanceRight += sectionValue.DistanceLeft;
@@ -220,7 +220,7 @@ namespace Controller
                 //Move the right driver
                 else
                 {
-                    sectionTimes.addItemToList(new DriverSectionTimes(sectionValue.Right.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
+                    sectionTimes.AddItemToList(new DriverSectionTimes(sectionValue.Right.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
 
                     nextSectionValue.Right = sectionValue.Right;
                     nextSectionValue.DistanceRight += sectionValue.DistanceRight;

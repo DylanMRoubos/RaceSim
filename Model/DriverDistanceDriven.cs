@@ -18,19 +18,38 @@ namespace Model
             Distance = distance;
         }
 
-        public void Add(List<IDriverName> list)
+        public void Add<T>(List<T> list) where T : class, IDriverName
         {
             foreach (var driver in list)
             {
-                var currentDriver = (DriverDistanceDriven)driver;
+                var currentDriver = driver as DriverDistanceDriven;
                 if (currentDriver.Name == Name)
                 {
                     currentDriver.Distance += Distance;
                     return;
                 }
             }
-            list.Add(this);
+            list.Add(this as T);
         }
 
+
+        public string GetBest<T>(List<T> list) where T : class, IDriverName
+        {
+            int DistanceDriven = Distance;
+            DriverDistanceDriven DistanceDrivenObj = this;
+
+            foreach (var driver in list)
+            {
+                var currentDriver = driver as DriverDistanceDriven;
+
+                if (currentDriver.Distance > Distance)
+                {
+                    Distance = currentDriver.Distance;
+                    DistanceDrivenObj = currentDriver;
+                }
+            }
+
+            return DistanceDrivenObj.Name;
+        }
     }
 }
