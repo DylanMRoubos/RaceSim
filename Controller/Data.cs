@@ -41,15 +41,18 @@ namespace Controller
                 SectionTypes.LeftCorner,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight, SectionTypes.LeftCorner,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight, SectionTypes.RightCorner,
                 SectionTypes.RightCorner, SectionTypes.LeftCorner, SectionTypes.LeftCorner, SectionTypes.RightCorner, SectionTypes.RightCorner,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,
                 SectionTypes.RightCorner,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight, SectionTypes.RightCorner,SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight};
+            SectionTypes[] sections6 = { SectionTypes.StartGrid, SectionTypes.StartGrid, SectionTypes.Finish, SectionTypes.RightCorner, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.RightCorner };
 
             Track track1 = new Track("Monaco", sections1);
             Track track2 = new Track("Zandvoord", sections2);
             Track track3 = new Track("Nascar", sections3);
             Track track4 = new Track("Nascar", sections4);
+            Track track6 = new Track("Nascar", sections6);
             Track oostendorp = new Track("Oostendorp", sections5);
 
-            //Competition.Tracks.Enqueue(oostendorp);
+           // Competition.Tracks.Enqueue(oostendorp);
             Competition.Tracks.Enqueue(track2);
+            Competition.Tracks.Enqueue(track6);
             Competition.Tracks.Enqueue(track3);
             Competition.Tracks.Enqueue(track4);
             Competition.Tracks.Enqueue(track1);

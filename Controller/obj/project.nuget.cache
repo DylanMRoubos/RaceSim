@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qrdO38cRp+ZNgNto3FYKZp/PZARB3Uxo83ag0hDXGReG5aIOhs3Mz846gyffbWCeLusgR/G0kL1gv4QUor0HSg==",
+  "dgSpecHash": "vzDtzuNBNM+wDFmVh1B1NZzY1HVCpqUqPbLiSL66XA2UAlA7KCpCtIwZTdwSPUyXNMjQkv0d1oxv1PjBzb0C9g==",
   "success": true,
-  "projectFilePath": "/Users/dylanroubos/Projects/RaceSim/Controller/Controller.csproj",
+  "projectFilePath": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\Controller\\Controller.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

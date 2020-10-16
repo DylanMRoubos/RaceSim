@@ -1,32 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "/Users/dylanroubos/Projects/RaceSim/Controller/Controller.csproj": {}
+    "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\Controller\\Controller.csproj": {}
   },
   "projects": {
-    "/Users/dylanroubos/Projects/RaceSim/Controller/Controller.csproj": {
+    "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\Controller\\Controller.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dylanroubos/Projects/RaceSim/Controller/Controller.csproj",
+        "projectUniqueName": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\Controller\\Controller.csproj",
         "projectName": "Controller",
-        "projectPath": "/Users/dylanroubos/Projects/RaceSim/Controller/Controller.csproj",
-        "packagesPath": "/Users/dylanroubos/.nuget/packages/",
-        "outputPath": "/Users/dylanroubos/Projects/RaceSim/Controller/obj/",
+        "projectPath": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\Controller\\Controller.csproj",
+        "packagesPath": "C:\\Users\\Dylan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\Controller\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/dylanroubos/.config/NuGet/NuGet.Config"
+          "C:\\Users\\Dylan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "/Users/dylanroubos/Projects/RaceSim/Model/Model.csproj": {
-                "projectPath": "/Users/dylanroubos/Projects/RaceSim/Model/Model.csproj"
+              "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\Model\\Model.csproj"
               }
             }
           }
@@ -54,26 +56,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/dylanroubos/Projects/RaceSim/Model/Model.csproj": {
+    "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dylanroubos/Projects/RaceSim/Model/Model.csproj",
+        "projectUniqueName": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "/Users/dylanroubos/Projects/RaceSim/Model/Model.csproj",
-        "packagesPath": "/Users/dylanroubos/.nuget/packages/",
-        "outputPath": "/Users/dylanroubos/Projects/RaceSim/Model/obj/",
+        "projectPath": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\Model\\Model.csproj",
+        "packagesPath": "C:\\Users\\Dylan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/dylanroubos/.config/NuGet/NuGet.Config"
+          "C:\\Users\\Dylan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -104,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

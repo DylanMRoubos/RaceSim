@@ -43,19 +43,15 @@ namespace RaceSim
 
         public static void DrawTrack(Track track)
         {
-            Track = track;
-
-            SectionBuildingGridDetails = new List<SectionBuildingDetails>();
-
-            FillSectionBuildingGridDetailsArray(SectionBuildingGridDetails, Track);
-            UpdateListWithLowestXAndY(SectionBuildingGridDetails, GetLowestXValue(SectionBuildingGridDetails), GetLowestYValue(SectionBuildingGridDetails));
-
-            CompleteTrack = new string[GetHighestYValue(SectionBuildingGridDetails), GetHighestXValue(SectionBuildingGridDetails), 4];
-
+                Track = track;
+                SectionBuildingGridDetails = new List<SectionBuildingDetails>();
+                FillSectionBuildingGridDetailsArray(SectionBuildingGridDetails, Track);
+                UpdateListWithLowestXAndY(SectionBuildingGridDetails, GetLowestXValue(SectionBuildingGridDetails), GetLowestYValue(SectionBuildingGridDetails));
+                init = false;
+  
             BuildTrackArray(CompleteTrack, SectionBuildingGridDetails);
+
             DrawTrackComponentWithCompleteTrackArray(CompleteTrack, SectionBuildingGridDetails);
-
-
         }
 
         public static void FillSectionBuildingGridDetailsArray(List<SectionBuildingDetails> sectionBuildingDetaisl, Track track)

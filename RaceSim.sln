@@ -1,13 +1,16 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceSim", "RaceSim\RaceSim.csproj", "{673CFE0D-36A5-46CC-BA89-B8954F3D27C1}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceSim", "RaceSim\RaceSim.csproj", "{673CFE0D-36A5-46CC-BA89-B8954F3D27C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{8BCAC5D3-EC6A-4FDF-8CE9-CC9D263A6546}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{8BCAC5D3-EC6A-4FDF-8CE9-CC9D263A6546}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Controller\Controller.csproj", "{9990F252-99D5-494A-9F94-F3AA8E2E8794}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controller", "Controller\Controller.csproj", "{9990F252-99D5-494A-9F94-F3AA8E2E8794}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerTest", "ControllerTest\ControllerTest.csproj", "{A33E3A4E-42AA-4FB4-8899-B610BEDD7EC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControllerTest", "ControllerTest\ControllerTest.csproj", "{A33E3A4E-42AA-4FB4-8899-B610BEDD7EC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceGui", "RaceGui\RaceGui.csproj", "{4BDF3168-98F9-4974-85C7-94124E1571AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,5 +34,15 @@ Global
 		{A33E3A4E-42AA-4FB4-8899-B610BEDD7EC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A33E3A4E-42AA-4FB4-8899-B610BEDD7EC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A33E3A4E-42AA-4FB4-8899-B610BEDD7EC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BDF3168-98F9-4974-85C7-94124E1571AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BDF3168-98F9-4974-85C7-94124E1571AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BDF3168-98F9-4974-85C7-94124E1571AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BDF3168-98F9-4974-85C7-94124E1571AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7BE19680-6694-4B65-ABF7-62140F1C0B8F}
 	EndGlobalSection
 EndGlobal

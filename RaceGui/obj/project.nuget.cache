@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "ETF4V1KfwCR9z4WcyXhLPLKRzYbmctA3S0MXvoabtPTiMLgSBZCS6/unfBpZLW20/n+db/NEIZ8xIgKcPjJAzg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\RaceGui\\RaceGui.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dylan\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\Dylan\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Dylan\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

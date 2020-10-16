@@ -16,3 +16,12 @@
 /Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.dll
 /Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.pdb
 /Users/dylanroubos/Projects/RaceSim/Model/obj/Debug/netcoreapp3.1/Model.csprojAssemblyReference.cache
+C:\Users\Dylan\Source\Repos\RaceSim\Model\bin\Debug\netcoreapp3.1\Model.deps.json
+C:\Users\Dylan\Source\Repos\RaceSim\Model\bin\Debug\netcoreapp3.1\Model.dll
+C:\Users\Dylan\Source\Repos\RaceSim\Model\bin\Debug\netcoreapp3.1\Model.pdb
+C:\Users\Dylan\Source\Repos\RaceSim\Model\obj\Debug\netcoreapp3.1\Model.csprojAssemblyReference.cache
+C:\Users\Dylan\Source\Repos\RaceSim\Model\obj\Debug\netcoreapp3.1\Model.AssemblyInfoInputs.cache
+C:\Users\Dylan\Source\Repos\RaceSim\Model\obj\Debug\netcoreapp3.1\Model.AssemblyInfo.cs
+C:\Users\Dylan\Source\Repos\RaceSim\Model\obj\Debug\netcoreapp3.1\Model.csproj.CoreCompileInputs.cache
+C:\Users\Dylan\Source\Repos\RaceSim\Model\obj\Debug\netcoreapp3.1\Model.dll
+C:\Users\Dylan\Source\Repos\RaceSim\Model\obj\Debug\netcoreapp3.1\Model.pdb
