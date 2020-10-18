@@ -14,6 +14,7 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/cornerrighthorizontal.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/cornerrightvertical.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/finish.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/fire.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/grass_tile.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/grey.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/green.png")]

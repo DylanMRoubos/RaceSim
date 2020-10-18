@@ -35,14 +35,12 @@ namespace RaceGui
         const string Red = ".\\Assets\\Red.png";
         const string Yellow = ".\\Assets\\Yellow.png";
         const string Green = ".\\Assets\\Green.png";
-        #endregion
-          
-        public static BitmapSource DrawTrack()
-        {
-            return ImageCache.CreateBitmapSourceFromGdiBitmap(canvas);
-        }
 
-        public static void Initialize(Track track)
+        const string Fire = ".\\Assets\\Fire.png";
+        #endregion
+
+
+        public static BitmapSource DrawTrack(Track track)
         {
             CreateArrayWithTrack(track);
 
@@ -53,8 +51,11 @@ namespace RaceGui
             BuildTrackArray(CompleteTrack, SectionBuildingGridDetails);
             AddGrass(CompleteTrack);
 
-            PlaceTrack(canvas);
+            Graphics g = PlaceTrack(canvas);
+            PlaceParticipantsOnTrack(g, SectionBuildingGridDetails);
+            return ImageCache.CreateBitmapSourceFromGdiBitmap(canvas);
         }
+
 
         public static void CreateArrayWithTrack(Track track)
         {
@@ -65,7 +66,7 @@ namespace RaceGui
             UpdateListWithLowestXAndY(SectionBuildingGridDetails, GetLowestXValue(SectionBuildingGridDetails), GetLowestYValue(SectionBuildingGridDetails));
         }
 
-        public static void PlaceTrack(Bitmap canvas)
+        public static Graphics PlaceTrack(Bitmap canvas)
         {
             int x = 0;
             int y = 0;
@@ -82,6 +83,7 @@ namespace RaceGui
                 x = 0;
                 y += 691;
             }
+            return g;
         }
 
         public static void FillSectionBuildingGridDetailsArray(List<SectionBuildingDetails> sectionBuildingDetaisl, Track track)
@@ -224,14 +226,14 @@ namespace RaceGui
                     {
 
                         //Check if driver is on section
-                       completeTrack[Section.Y, Section.X] = PlaceParticipantsOnTrack(ImageCache.GetImage(TrackHorizontal), Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
+                        completeTrack[Section.Y, Section.X] = ImageCache.GetImage(TrackHorizontal);
 
-                       // completeTrack[Section.Y, Section.X] = ImageCache.GetImage(TrackHorizontal);
+                        // completeTrack[Section.Y, Section.X] = ImageCache.GetImage(TrackHorizontal);
                     }
                     //Vertical
                     else
                     {
-                        completeTrack[Section.Y, Section.X] = PlaceParticipantsOnTrack(ImageCache.GetImage(TrackVertical), Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
+                        completeTrack[Section.Y, Section.X] = ImageCache.GetImage(TrackVertical);
                     }
                 }
                 //Straight track horizontal & vertical 
@@ -240,13 +242,13 @@ namespace RaceGui
                     //Horizontal
                     if (Section.Direction == Direction.East || Section.Direction == Direction.West)
                     {
-                        completeTrack[Section.Y, Section.X] = PlaceParticipantsOnTrack(ImageCache.GetImage(TrackHorizontal), Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
+                        completeTrack[Section.Y, Section.X] = ImageCache.GetImage(TrackHorizontal);
 
                     }
                     //Vertical
                     else
                     {
-                        completeTrack[Section.Y, Section.X] = PlaceParticipantsOnTrack(ImageCache.GetImage(TrackVertical), Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
+                        completeTrack[Section.Y, Section.X] = ImageCache.GetImage(TrackVertical);
 
                     }
                 }
@@ -256,14 +258,12 @@ namespace RaceGui
                     //Horizontal
                     if (Section.Direction == Direction.East || Section.Direction == Direction.West)
                     {
-                        completeTrack[Section.Y, Section.X] = PlaceParticipantsOnTrack(ImageCache.GetImage(Finish), Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
-
+                        completeTrack[Section.Y, Section.X] = ImageCache.GetImage(Finish);
                     }
                     //Vertical
                     else
                     {
-                        completeTrack[Section.Y, Section.X] = PlaceParticipantsOnTrack(ImageCache.GetImage(Finish), Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
-
+                        completeTrack[Section.Y, Section.X] = ImageCache.GetImage(Finish);
                     }
                 }
                 //Corner left
@@ -272,25 +272,21 @@ namespace RaceGui
                     //Left -> North
                     if (Section.Direction == Direction.North)
                     {
-                        completeTrack[Section.Y, Section.X] = PlaceParticipantsOnTrack(ImageCache.GetImage(CornerLeftHorizontal), Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
-
+                        completeTrack[Section.Y, Section.X] = ImageCache.GetImage(CornerLeftHorizontal);
                     }
                     //Left -> East
                     else if (Section.Direction == Direction.East)
                     {
-                        completeTrack[Section.Y, Section.X] = PlaceParticipantsOnTrack(ImageCache.GetImage(CornerRightHorizontal), Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
-
+                        completeTrack[Section.Y, Section.X] = ImageCache.GetImage(CornerRightHorizontal);
                     }
                     //Left South
                     else if (Section.Direction == Direction.South)
                     {
-                        completeTrack[Section.Y, Section.X] = PlaceParticipantsOnTrack(ImageCache.GetImage(CornerRightVertical), Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
-
+                        completeTrack[Section.Y, Section.X] = ImageCache.GetImage(CornerRightVertical);
                     }
                     else if (Section.Direction == Direction.West)
                     {
-                        completeTrack[Section.Y, Section.X] = PlaceParticipantsOnTrack(ImageCache.GetImage(CornerLeftVertical), Data.CurrentRace.GetSectionData(Section.Section).Left, Data.CurrentRace.GetSectionData(Section.Section).Right);
-
+                        completeTrack[Section.Y, Section.X] = ImageCache.GetImage(CornerLeftVertical);
                     }
                 }
                 //Corner right
@@ -333,79 +329,106 @@ namespace RaceGui
             {
                 for (int j = 0; j < CompleteTrack.GetLength(1); j++)
                 {
-                    if(CompleteTrack[i,j] == null)
+                    if (CompleteTrack[i, j] == null)
                     {
-                        if(random.Next(0,2) == 0)
+                        CompleteTrack[i, j] = ImageCache.GetImage(GrassTile);
+                        /*if(random.Next(0,2) == 0)
                         {
                             CompleteTrack[i, j] = ImageCache.GetImage(WaterTile);
                             
                         } else
                         {
                             CompleteTrack[i, j] = ImageCache.GetImage(GrassTile);
-                        }
-                        
+                        }*/
+
                     }
                 }
             }
         }
 
         //TODO: make sure not change bitmap in cache -- go cry
-        public static Bitmap PlaceParticipantsOnTrack(Bitmap image, IParticipant participant1, IParticipant participant2)
+        public static void PlaceParticipantsOnTrack(Graphics g, List<SectionBuildingDetails> sectionBuildingDetails)
         {
-            var clone = (Bitmap)image.Clone();
 
-            Graphics g = Graphics.FromImage(clone);
-
-            if (participant1 != null) 
-            { 
-                if (participant1.Equipment.IsBroken)
-                {
-                    g.DrawImage(ImageCache.GetImage(GetParticipantColor(participant1)), 300, 200, 200, 99);
-                }
-                else
-                {                
-                    g.DrawImage(ImageCache.GetImage(GetParticipantColor(participant1)), 300, 200, 200, 99);
-                    
-                }
-            } 
-            if (participant2 != null)
+            foreach (var Section in sectionBuildingDetails)
             {
-                if (participant2.Equipment.IsBroken)
+                var Sectiondata = Data.CurrentRace.GetSectionData(Section.Section);
+
+                if (Sectiondata.Left != null)
                 {
-                    g.DrawImage(ImageCache.GetImage(GetParticipantColor(participant2)), 200, 400, 200, 99);
+                    Bitmap carleft = GetParticipantImage(Sectiondata.Left, Section.Direction);
+                    g.DrawImage(carleft, ((Section.X * 691) + 300), ((Section.Y * 691) + 150));
+                    //Check if car is broken and draw fire on it if so
+                    if (Sectiondata.Left.Equipment.IsBroken)
+                    {
+                        g.DrawImage(ImageCache.GetImage(Fire), Section.X * 691 + 300, Section.Y * 691 + 150, 200, 99);
+                    }
                 }
-                else
+                if (Sectiondata.Right != null)
                 {
-                    g.DrawImage(ImageCache.GetImage(GetParticipantColor(participant2)), 200, 400, 200, 99);
+                    Bitmap carRight = GetParticipantImage(Sectiondata.Right, Section.Direction);
+                    g.DrawImage(carRight, ((Section.X * 691) + 100), ((Section.Y * 691) + 400));
+                    if (Sectiondata.Right.Equipment.IsBroken)
+                    {
+                        g.DrawImage(ImageCache.GetImage(Fire), Section.X * 691 + 100, Section.Y * 691 + 400, 200, 99);
+                    }
                 }
             }
-            if (participant1 == null && participant2 == null )
-            {
-                return image;
-            }
-
-            return clone;
         }
 
-        public static String GetParticipantColor(IParticipant participant)
+        public static Bitmap GetParticipantImage(IParticipant participant, Direction direction)
         {
+
             switch (participant.TeamColor)
             {
                 case TeamColors.Blue:
-                    return Blue;
+                    return RotateImage(ImageCache.GetImage(Blue), direction);
                 case TeamColors.Grey:
-                    return Grey;
+                    return RotateImage(ImageCache.GetImage(Grey), direction);
                 case TeamColors.Green:
-                    return Green;
+                    return RotateImage(ImageCache.GetImage(Green), direction);
                 case TeamColors.Red:
-                    return Red;
+                    return RotateImage(ImageCache.GetImage(Red), direction);
                 case TeamColors.Yellow:
-                    return Yellow;
+                    return RotateImage(ImageCache.GetImage(Yellow), direction);
                 default:
                     throw new ArgumentOutOfRangeException("Color null");
             }
+
+        }
+        //TODO: FIX small bug in the image scaling in the corners
+        public static Bitmap RotateImage(Bitmap b, Direction direction)
+        {
+            int maxside = (int)(Math.Sqrt(b.Width * b.Width + b.Height * b.Height));
+
+            //create a new empty bitmap to hold rotated image
+            Bitmap returnBitmap = new Bitmap(maxside, maxside);
+            //make a graphics object from the empty bitmap
+            Graphics g = Graphics.FromImage(returnBitmap);
+
+            //move rotation point to center of image
+
+            g.TranslateTransform((float)b.Width / 2, (float)b.Height / 2);
+
+            switch (direction)
+            {
+                case Direction.South:
+                    g.RotateTransform(90);
+                    break;
+                case Direction.West:
+                    g.RotateTransform(180);
+                    break;
+                case Direction.North:
+                    g.RotateTransform(270);
+                    break;
+            }
+
+            //move image back
+            g.TranslateTransform(-(float)b.Width / 2, -(float)b.Height / 2 );
+
+            g.DrawImage(b, 0, 0, 200, 99);
+            return returnBitmap;
         }
 
-
-    }
+}
 }

@@ -47,7 +47,7 @@ namespace Controller
             AddParticipantsToTrack(Track, Participants, DateTime.Now);
             fillDriverDictionaray();
 
-            timer = new Timer(250);
+            timer = new Timer(125);
             timer.Elapsed += OnTimedEvent;
             Start();
         }

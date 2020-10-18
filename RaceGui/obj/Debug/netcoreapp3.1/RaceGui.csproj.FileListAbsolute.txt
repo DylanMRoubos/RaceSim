@@ -40,3 +40,4 @@ C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\bin\Debug\netcoreapp3.1\Assets\Green
 C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\bin\Debug\netcoreapp3.1\Assets\Red.png
 C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\bin\Debug\netcoreapp3.1\Assets\Yellow.png
 C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\bin\Debug\netcoreapp3.1\Assets\Water.png
+C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\bin\Debug\netcoreapp3.1\Assets\fire.png

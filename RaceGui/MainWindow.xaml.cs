@@ -28,8 +28,14 @@ namespace RaceGui
             Data.Initialize();
             Data.NextRace();
             Data.CurrentRace.DriversChanged += OnDriversChanged;
-            GUITrackVisualisation.Initialize(Data.CurrentRace.Track);
+            Data.CurrentRace.NextRace += NextRace;
+        }
 
+        public void Initialize()
+        {
+            Data.CurrentRace.DriversChanged += OnDriversChanged;
+            Data.CurrentRace.NextRace += NextRace;
+            //ImageCache.ClearCache();
         }
 
         public void OnDriversChanged(Object sender, DriversChangedEventArgs e)
@@ -39,8 +45,13 @@ namespace RaceGui
             new Action(() =>
             {
                 TrackImage.Source = null;
-                TrackImage.Source = GUITrackVisualisation.DrawTrack();
+                TrackImage.Source = GUITrackVisualisation.DrawTrack(Data.CurrentRace.Track);
             }));
+        }
+
+        public void NextRace(Object source, EventArgs e)
+        {
+            Initialize();
         }
     }
 }

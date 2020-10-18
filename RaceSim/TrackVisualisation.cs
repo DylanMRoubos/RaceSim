@@ -43,12 +43,11 @@ namespace RaceSim
 
         public static void DrawTrack(Track track)
         {
-                Track = track;
-                SectionBuildingGridDetails = new List<SectionBuildingDetails>();
-                FillSectionBuildingGridDetailsArray(SectionBuildingGridDetails, Track);
-                UpdateListWithLowestXAndY(SectionBuildingGridDetails, GetLowestXValue(SectionBuildingGridDetails), GetLowestYValue(SectionBuildingGridDetails));
-                init = false;
-  
+            Track = track;
+            SectionBuildingGridDetails = new List<SectionBuildingDetails>();
+            FillSectionBuildingGridDetailsArray(SectionBuildingGridDetails, Track);
+            UpdateListWithLowestXAndY(SectionBuildingGridDetails, GetLowestXValue(SectionBuildingGridDetails), GetLowestYValue(SectionBuildingGridDetails));
+
             BuildTrackArray(CompleteTrack, SectionBuildingGridDetails);
 
             DrawTrackComponentWithCompleteTrackArray(CompleteTrack, SectionBuildingGridDetails);
@@ -388,14 +387,15 @@ namespace RaceSim
             }
             else
             {
-                if(participant1.Equipment.IsBroken)
+                if (participant1.Equipment.IsBroken)
                 {
                     returnvalue = returnvalue.Replace("1", "x");
-                } else
+                }
+                else
                 {
                     returnvalue = returnvalue.Replace("1", $"{participant1.Name.Substring(0, 1)}");
                 }
-               
+
             }
             if (participant2 == null)
             {

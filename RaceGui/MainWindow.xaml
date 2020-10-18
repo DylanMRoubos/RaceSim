@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RaceGui"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1200">
-    <Grid Background="#FF178317">
+    <Grid Background="#006400">
         <Image Name="TrackImage" Margin="29,27,30,27"/>
 
     </Grid>

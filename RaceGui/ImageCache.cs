@@ -36,7 +36,7 @@ namespace RaceGui
             }
             
             Graphics g = Graphics.FromImage(_cache["empty"]);
-            g.Clear(System.Drawing.Color.FromArgb(0xc2, 0xb2, 080));
+            g.Clear(System.Drawing.Color.FromArgb(0, 100, 0));
 
             return (Bitmap)_cache["empty"].Clone();
         }
