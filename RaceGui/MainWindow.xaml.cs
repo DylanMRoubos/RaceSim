@@ -22,18 +22,25 @@ namespace RaceGui
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Window RaceDetails;
+        private Window CompetitionDetails;
+
         public MainWindow()
         {
             InitializeComponent();
             Data.Initialize();
             Data.NextRace();
-            Data.CurrentRace.DriversChanged += OnDriversChanged;
-            Data.CurrentRace.NextRace += NextRace;
+            Initialize();
         }
 
         public void Initialize()
         {
             Data.CurrentRace.DriversChanged += OnDriversChanged;
+            this.Dispatcher.Invoke(() =>
+            {
+                Data.CurrentRace.DriversChanged += ((MainDataContext)this.DataContext).OnDriversChanged;
+            });
+            
             Data.CurrentRace.NextRace += NextRace;
             //ImageCache.ClearCache();
         }
@@ -52,6 +59,22 @@ namespace RaceGui
         public void NextRace(Object source, EventArgs e)
         {
             Initialize();
+        }
+
+        private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Open_Race_Details(object sender, RoutedEventArgs e)
+        {
+            RaceDetails = new RaceStatisticsWindow();
+            RaceDetails.Show();
+        }
+        private void Open_Competition_Details(object sender, RoutedEventArgs e)
+        {
+            CompetitionDetails = new StatisticsWindow();
+            CompetitionDetails.Show();
         }
     }
 }

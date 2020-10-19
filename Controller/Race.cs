@@ -356,7 +356,7 @@ namespace Controller
             }
             //CheckIfDriverCrossedFinish(section.Value);
 
-            DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
+            DriversChanged.Invoke(this, new DriversChangedEventArgs(Track, Data.Competition));
 
             if (driversRemoved == Participants.Count)
             {

@@ -7,6 +7,10 @@ namespace Model
         private int Points { get; set; }
         public string Name { get; set; }
 
+        public DriverPoints()
+        {
+
+        }
         public DriverPoints(string name, int points)
         {
             Name = name;
