@@ -6,19 +6,23 @@
         xmlns:local="clr-namespace:RaceGui"
         xmlns:Model="clr-namespace:Model;assembly=Model" x:Class="RaceGui.StatisticsWindow"
         mc:Ignorable="d"
-        Title="StatisticsWindow" Height="450" Width="800">
+        Title="StatisticsWindow" Height="453" Width="286">
     <Window.DataContext>
-        <Model:MainDataContext/>
+        <local:CompetitionDataContext/>
     </Window.DataContext>
-    <Grid Margin="0,97,526,0">
-        <ListView Margin="100,-75,-60,71" Grid.ColumnSpan="2">
+    <Grid>
+        <ListView Name="SectionTimes" Margin="32,57,32,40" IsEnabled="True" ItemsSource="{Binding DriverPointsList}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Driver" Width="120" DisplayMemberBinding="{Binding TrackName}" />
-                    <GridViewColumn Header="BrokenDownAmount" Width="120"  />
+                    <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Points" Width="100" DisplayMemberBinding="{Binding Points}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-
+        <Label Content="Competition:" HorizontalAlignment="Left" Margin="32,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding CompetitionName}" HorizontalAlignment="Left" Margin="148,13,0,0" VerticalAlignment="Top" />
+        <Label Content="Best Driver:" HorizontalAlignment="Left" Margin="32,31,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding BestDriver}" HorizontalAlignment="Left" Margin="148,28,0,0" VerticalAlignment="Top" />
     </Grid>
+
 </Window>

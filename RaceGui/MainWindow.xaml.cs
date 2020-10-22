@@ -35,6 +35,7 @@ namespace RaceGui
 
         public void Initialize()
         {
+            ImageCache.ClearCache();
             Data.CurrentRace.DriversChanged += OnDriversChanged;
             this.Dispatcher.Invoke(() =>
             {
@@ -56,7 +57,7 @@ namespace RaceGui
             }));
         }
 
-        public void NextRace(Object source, EventArgs e)
+        public void NextRace(Object source, RaceStartEventArgs e)
         {
             Initialize();
         }
@@ -69,11 +70,19 @@ namespace RaceGui
         private void Open_Race_Details(object sender, RoutedEventArgs e)
         {
             RaceDetails = new RaceStatisticsWindow();
+
+            Data.CurrentRace.NextRace += ((RaceDataContext)RaceDetails.DataContext).OnNextRaceEvent;
+            ((RaceDataContext)RaceDetails.DataContext).OnNextRaceEvent(null, new RaceStartEventArgs(Data.CurrentRace));
+
             RaceDetails.Show();
         }
         private void Open_Competition_Details(object sender, RoutedEventArgs e)
         {
             CompetitionDetails = new StatisticsWindow();
+            Data.CurrentRace.NextRace += ((CompetitionDataContext)CompetitionDetails.DataContext).OnNextRaceEvent;
+
+            ((CompetitionDataContext)CompetitionDetails.DataContext).OnNextRaceEvent(null, new RaceStartEventArgs(Data.CurrentRace));
+
             CompetitionDetails.Show();
         }
     }

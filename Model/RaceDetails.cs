@@ -28,6 +28,11 @@ namespace Model
             
         }
 
+        public List<T> GetList()
+        {
+            return _list;
+        }
+
         //Method to make list enumartable
         //public IEnumerator GetEnumerator()
         //{

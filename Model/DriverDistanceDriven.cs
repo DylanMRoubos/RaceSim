@@ -5,7 +5,7 @@ namespace Model
 {
     public class DriverDistanceDriven : IDriverName
     {
-        private int Distance { get; set; }
+        public int Distance { get; set; }
         public string Name { get; set; }
 
         public DriverDistanceDriven()

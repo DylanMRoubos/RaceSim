@@ -10,7 +10,7 @@ namespace RaceGui
     public static class ImageCache
     {
         //Dictionary to keep track of the bitmaps from the img url
-        private static  Dictionary<string, Bitmap> _cache = new Dictionary<string, Bitmap>();
+        private static Dictionary<string, Bitmap> _cache = new Dictionary<string, Bitmap>();
 
         //Get a specific bitmap from dictionary based on URL
         public static Bitmap GetImage(string imageURL)
@@ -33,10 +33,10 @@ namespace RaceGui
             if(!_cache.ContainsKey("empty"))
             {
                 _cache.Add("empty", new Bitmap(width, height));
+                Graphics g = Graphics.FromImage(_cache["empty"]);
+                g.Clear(System.Drawing.Color.FromArgb(0, 100, 0));
+
             }
-            
-            Graphics g = Graphics.FromImage(_cache["empty"]);
-            g.Clear(System.Drawing.Color.FromArgb(0, 100, 0));
 
             return (Bitmap)_cache["empty"].Clone();
         }

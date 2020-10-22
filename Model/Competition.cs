@@ -9,19 +9,22 @@ namespace Model
         public List<IParticipant> Participants { get; set; }
         public Queue<Track> Tracks { get; set; }
         public RaceDetails<DriverPoints> DriverPoints {get; set;}
+        public string Name { get; set; }
 
-        public Competition(List<IParticipant> Participants, Queue<Track> Tracks)
+        public Competition(List<IParticipant> Participants, Queue<Track> Tracks, string name)
         {
             Participants = new List<IParticipant>();
             this.Participants = Participants;
             this.Tracks = Tracks;
+            Name = name;
             DriverPoints = new RaceDetails<DriverPoints>();
         }
 
-        public Competition()
+        public Competition(string name)
         {
             Participants = new List<IParticipant>();
             Tracks = new Queue<Track>();
+            Name = name;
             DriverPoints = new RaceDetails<DriverPoints>();
         }
 

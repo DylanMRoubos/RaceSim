@@ -12,11 +12,11 @@ namespace Controller
         public DateTime StartTime { get; set; }
         public Random _random { get; set; }
         private Timer timer;
-        private const int amountOfLaps = 2;
+        private const int amountOfLaps = 1;
         private int driversRemoved;
 
         public delegate void onDriversChanged(object Sender, DriversChangedEventArgs dirversChangedEventArgs);
-        public delegate void onNextRace(object Sender, EventArgs nextRaceEventArgs);
+        public delegate void onNextRace(object Sender, RaceStartEventArgs nextRaceEventArgs);
 
         public event onDriversChanged DriversChanged;
         public event onNextRace NextRace;
@@ -163,6 +163,7 @@ namespace Controller
                         sectionTimes.AddItemToList(new DriverSectionTimes(sectionValue.Right.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
 
                         FinishPosition.Add(FinishPosition.Count + 1, sectionValue.Right.Name);
+                        AddDrivenDistance(sectionValue.Right.Name, 100);
                         sectionValue.Right = null;
                         sectionValue.DistanceRight = 100;
                         driversRemoved++;
@@ -180,6 +181,7 @@ namespace Controller
                 if (LeftRight == 0)
                 {
                     sectionTimes.AddItemToList(new DriverSectionTimes(sectionValue.Left.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
+                    AddDrivenDistance(sectionValue.Left.Name, 100);
 
                     nextSectionValue.Left = sectionValue.Left;
                     nextSectionValue.DistanceLeft += sectionValue.DistanceLeft;
@@ -192,7 +194,7 @@ namespace Controller
                 else
                 {
                     sectionTimes.AddItemToList(new DriverSectionTimes(sectionValue.Right.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
-
+                    AddDrivenDistance(sectionValue.Right.Name, 100);
 
                     nextSectionValue.Left = sectionValue.Right;
                     nextSectionValue.DistanceLeft += sectionValue.DistanceRight;
@@ -210,6 +212,7 @@ namespace Controller
                 if (LeftRight == 0)
                 {
                     sectionTimes.AddItemToList(new DriverSectionTimes(sectionValue.Left.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
+                    AddDrivenDistance(sectionValue.Left.Name, 100);
 
                     nextSectionValue.Right = sectionValue.Left;
                     nextSectionValue.DistanceRight += sectionValue.DistanceLeft;
@@ -221,6 +224,7 @@ namespace Controller
                 else
                 {
                     sectionTimes.AddItemToList(new DriverSectionTimes(sectionValue.Right.Name, CurrentTime - sectionValue.startTimeLeft, section.Value));
+                    AddDrivenDistance(sectionValue.Right.Name, 100);
 
                     nextSectionValue.Right = sectionValue.Right;
                     nextSectionValue.DistanceRight += sectionValue.DistanceRight;
@@ -300,9 +304,7 @@ namespace Controller
                         if (!BrokenToggler(sectionValue.Left))
                         {                            
                             sectionValue.DistanceLeft -= CalculateDistanceForCar(sectionValue.Left);
-
-                            //Add driven distance to list
-                            AddDrivenDistance(sectionValue.Left.Name, CalculateDistanceForCar(sectionValue.Left));
+                         
                         }
                         if (sectionValue.DistanceLeft < 0)
                         {
@@ -320,8 +322,6 @@ namespace Controller
                         {
                             sectionValue.DistanceRight -= CalculateDistanceForCar(sectionValue.Right);
 
-                            //Add driven distance to list
-                            AddDrivenDistance(sectionValue.Right.Name, CalculateDistanceForCar(sectionValue.Right));
                         }
                         if (sectionValue.DistanceRight < 0)
                         {
@@ -356,7 +356,7 @@ namespace Controller
             }
             //CheckIfDriverCrossedFinish(section.Value);
 
-            DriversChanged.Invoke(this, new DriversChangedEventArgs(Track, Data.Competition));
+            DriversChanged?.Invoke(this, new DriversChangedEventArgs(Track, Data.Competition));
 
             if (driversRemoved == Participants.Count)
             {
@@ -384,7 +384,8 @@ namespace Controller
             Console.WriteLine("Stopped");
 
             Data.NextRace();
-            NextRace.Invoke(this, new EventArgs());
+
+            NextRace.Invoke(this, new RaceStartEventArgs(Data.CurrentRace)); 
         }
 
 

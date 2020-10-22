@@ -44,7 +44,7 @@ namespace RaceGui
         {
             CreateArrayWithTrack(track);
 
-            canvas = ImageCache.CreateBitmap(GetHighestXValue(SectionBuildingGridDetails) * 691, GetHighestYValue(SectionBuildingGridDetails) * 691);
+            canvas = ImageCache.CreateBitmap(GetHighestXValue(SectionBuildingGridDetails) * 256, GetHighestYValue(SectionBuildingGridDetails) * 256);
 
             CompleteTrack = new Bitmap[GetHighestYValue(SectionBuildingGridDetails), GetHighestXValue(SectionBuildingGridDetails)];
 
@@ -77,11 +77,11 @@ namespace RaceGui
             {
                 for (int j = 0; j < CompleteTrack.GetLength(1); j++)
                 {
-                    g.DrawImage(CompleteTrack[i, j], x, y, 691, 691);
-                    x += 691;
+                    g.DrawImage(CompleteTrack[i, j], x, y, 256, 256);
+                    x += 256;
                 }
                 x = 0;
-                y += 691;
+                y += 256;
             }
             return g;
         }
@@ -356,22 +356,24 @@ namespace RaceGui
 
                 if (Sectiondata.Left != null)
                 {
-                    Bitmap carleft = GetParticipantImage(Sectiondata.Left, Section.Direction);
-                    g.DrawImage(carleft, ((Section.X * 691) + 300), ((Section.Y * 691) + 150));
-                    //Check if car is broken and draw fire on it if so
                     if (Sectiondata.Left.Equipment.IsBroken)
                     {
-                        g.DrawImage(ImageCache.GetImage(Fire), Section.X * 691 + 300, Section.Y * 691 + 150, 200, 99);
+                        g.DrawImage(ImageCache.GetImage(Fire), Section.X * 256 + 128, Section.Y * 256, 128, 128);
                     }
+                    Bitmap carleft = GetParticipantImage(Sectiondata.Left, Section.Direction);
+                    g.DrawImage(carleft, ((Section.X * 256 + 128)), ((Section.Y * 256)), 128, 128);
+                    //Check if car is broken and draw fire on it if so
+                   
                 }
                 if (Sectiondata.Right != null)
                 {
-                    Bitmap carRight = GetParticipantImage(Sectiondata.Right, Section.Direction);
-                    g.DrawImage(carRight, ((Section.X * 691) + 100), ((Section.Y * 691) + 400));
                     if (Sectiondata.Right.Equipment.IsBroken)
                     {
-                        g.DrawImage(ImageCache.GetImage(Fire), Section.X * 691 + 100, Section.Y * 691 + 400, 200, 99);
+                        g.DrawImage(ImageCache.GetImage(Fire), Section.X * 256, Section.Y * 256 + 128, 128, 128);
                     }
+                    Bitmap carRight = GetParticipantImage(Sectiondata.Right, Section.Direction);
+                    g.DrawImage(carRight, ((Section.X * 256)), ((Section.Y * 256 + 128)), 128, 128);
+                    
                 }
             }
         }
@@ -426,7 +428,7 @@ namespace RaceGui
             //move image back
             g.TranslateTransform(-(float)b.Width / 2, -(float)b.Height / 2 );
 
-            g.DrawImage(b, 0, 0, 200, 99);
+            g.DrawImage(b, 0, 0, 128, 128);
             return returnBitmap;
         }
 

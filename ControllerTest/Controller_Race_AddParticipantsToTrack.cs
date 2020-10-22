@@ -39,7 +39,7 @@ namespace ControllerTest
 
             var race = new Race(track, _competition.Participants);
 
-            race.AddParticipantsToTrack(track, _competition.Participants);
+            race.AddParticipantsToTrack(track, _competition.Participants, DateTime.Now);
 
             foreach (var section in track.Sections)
             {
@@ -65,7 +65,7 @@ namespace ControllerTest
 
             var race = new Race(track, _competition.Participants);
 
-            race.AddParticipantsToTrack(track, _competition.Participants);
+            race.AddParticipantsToTrack(track, _competition.Participants, DateTime.Now);
 
             foreach (var section in track.Sections)
             {
@@ -89,7 +89,7 @@ namespace ControllerTest
 
             var race = new Race(track, _competition.Participants);
 
-            race.AddParticipantsToTrack(track, _competition.Participants);
+            race.AddParticipantsToTrack(track, _competition.Participants, DateTime.Now);
 
             foreach (var section in track.Sections)
             {
@@ -115,7 +115,7 @@ namespace ControllerTest
 
             var race = new Race(track, _competition.Participants);
 
-            race.AddParticipantsToTrack(track, _competition.Participants);
+            race.AddParticipantsToTrack(track, _competition.Participants, DateTime.Now);
 
             foreach (var section in track.Sections)
             {
@@ -160,7 +160,7 @@ namespace ControllerTest
 
             var race = new Race(track, _competition.Participants);
 
-            race.AddParticipantsToTrack(track, _competition.Participants);
+            race.AddParticipantsToTrack(track, _competition.Participants, DateTime.Now);
 
             foreach (var section in track.Sections)
             {

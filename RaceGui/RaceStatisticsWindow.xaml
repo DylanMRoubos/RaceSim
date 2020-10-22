@@ -6,6 +6,41 @@
         xmlns:local="clr-namespace:RaceGui"
         xmlns:Model="clr-namespace:Model;assembly=Model" x:Class="RaceGui.RaceStatisticsWindow"
         mc:Ignorable="d"
-        Title="RaceStatisticsWindow" Height="450" Width="800">
-    <Grid/>
+        Title="RaceStatisticsWindow" Height="600" Width="1000">
+    <Window.DataContext>
+        <local:RaceDataContext/>
+    </Window.DataContext>
+    <Grid>
+        <ListView Name="SectionTimes" Margin="330,74,330,23" IsEnabled="True" ItemsSource="{Binding SectionTimesList}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Section" Width="100" DisplayMemberBinding="{Binding Section.SectionType}"/>
+                    <GridViewColumn Header="Time" Width="100" DisplayMemberBinding="{Binding Time}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView Name="DistanceDriven" Margin="50,74,711,23" IsEnabled="True" ItemsSource="{Binding DistanceDrivenList}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Distance" Width="100" DisplayMemberBinding="{Binding Distance}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView Name="BrokenDownAmount" Margin="723,74,49,23" IsEnabled="True" ItemsSource="{Binding BrokenDownAmountList}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Broken Amount" Width="100" DisplayMemberBinding="{Binding BrokenDownAmount}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="Drivers distance driven" HorizontalAlignment="Left" Margin="104,43,0,0" VerticalAlignment="Top"/>
+        <Label Content="Drivers section times" HorizontalAlignment="Center" Margin="0,43,0,0" VerticalAlignment="Top"/>
+        <Label Content="Drivers broken down amount" HorizontalAlignment="Left" Margin="755,43,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
 </Window>

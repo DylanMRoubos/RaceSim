@@ -420,7 +420,7 @@ namespace RaceSim
             Console.Clear();
             DrawTrack(e.Track);
         }
-        public static void NextRace(Object source, EventArgs e)
+        public static void NextRace(Object source, RaceStartEventArgs e)
         {
             Initialize();
         }
