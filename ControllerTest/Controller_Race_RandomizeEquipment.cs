@@ -17,7 +17,7 @@ namespace ControllerTest
             public void SetUp()
             {
                 //Create Competition with 1 track & 2 drivers
-                Competition comp = new Competition();
+                Competition comp = new Competition("W1");
                 comp.Participants.Add(new Driver("Erik", 0, new Car(0, 0, 0, false), TeamColors.Grey));
                 comp.Participants.Add(new Driver("Thomas", 0, new Car(0, 0, 0, false), TeamColors.Yellow));
                 comp.Participants.Add(new Driver("Max", 0, new Car(0, 0, 0, false), TeamColors.Yellow));

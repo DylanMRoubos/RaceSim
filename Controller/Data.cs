@@ -7,7 +7,9 @@ namespace Controller
 
     public static class Data
     {
+        //Keep track of the competition
         public static Competition Competition { get; set; }
+        //Keep track of the current race
         public static Race CurrentRace { get; set; }
 
         public static void Initialize()
@@ -17,6 +19,7 @@ namespace Controller
             AddTracks();
 
         }
+        //Method to add participants to the Competition
         public static void AddParticipants()
         {
             Competition.Participants.Add(new Driver("Erik", 0, new Car(0, 0, 8, false), TeamColors.Grey));
@@ -27,54 +30,41 @@ namespace Controller
             //Competition.Participants.Add(new Driver("Jordy", 0, new Car(0, 0, 0, false), TeamColors.Red));
             //Competition.Participants.Add(new Driver("Max", 0, new Car(0, 0, 0, false), TeamColors.Red));
         }
+        //Method to add Tracks to the Competition
         public static void AddTracks()
         {
+            //Create sections for the track
             SectionTypes[] sections1 = { SectionTypes.StartGrid, SectionTypes.StartGrid, SectionTypes.StartGrid, SectionTypes.Finish, SectionTypes.LeftCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.LeftCorner, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.LeftCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.RightCorner
             , SectionTypes.Straight, SectionTypes.Straight};
             SectionTypes[] sections2 = { SectionTypes.StartGrid, SectionTypes.StartGrid, SectionTypes.Finish, SectionTypes.LeftCorner, SectionTypes.RightCorner, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.RightCorner };
             SectionTypes[] sections3 = { SectionTypes.StartGrid, SectionTypes.StartGrid, SectionTypes.Finish, SectionTypes.LeftCorner, SectionTypes.LeftCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.LeftCorner, SectionTypes.LeftCorner };
             SectionTypes[] sections4 = { SectionTypes.StartGrid, SectionTypes.StartGrid, SectionTypes.Finish, SectionTypes.RightCorner, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.RightCorner };
-            SectionTypes[] sections5 = { SectionTypes.StartGrid, SectionTypes.StartGrid, SectionTypes.StartGrid,SectionTypes.Finish, SectionTypes.Straight,
-                SectionTypes.LeftCorner, SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.RightCorner,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.RightCorner,SectionTypes.Straight, SectionTypes.RightCorner,
-                SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,
-                SectionTypes.LeftCorner,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight, SectionTypes.LeftCorner,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight, SectionTypes.RightCorner,
-                SectionTypes.RightCorner, SectionTypes.LeftCorner, SectionTypes.LeftCorner, SectionTypes.RightCorner, SectionTypes.RightCorner,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,
-                SectionTypes.RightCorner,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight,SectionTypes.Straight, SectionTypes.RightCorner,SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight};
-            SectionTypes[] sections6 = { SectionTypes.StartGrid, SectionTypes.StartGrid, SectionTypes.Finish, SectionTypes.RightCorner, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.RightCorner };
+            SectionTypes[] sections5 = { SectionTypes.StartGrid, SectionTypes.StartGrid, SectionTypes.Finish, SectionTypes.RightCorner, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.RightCorner };
 
+            //Create the track based on the sections
             Track track1 = new Track("Monaco", sections1);
             Track track2 = new Track("Zandvoord", sections2);
             Track track3 = new Track("Nascar", sections3);
             Track track4 = new Track("Nascar1", sections4);
-            Track track6 = new Track("Nascar3", sections6);
-            Track oostendorp = new Track("Oostendorp", sections5);
+            Track track5 = new Track("Nascar2", sections5);
 
-            //Competition.Tracks.Enqueue(track1);
+            //Enqueue the tracks in the competition
+            Competition.Tracks.Enqueue(track1);
             Competition.Tracks.Enqueue(track2);
-            Competition.Tracks.Enqueue(track6);
-            //Competition.Tracks.Enqueue(oostendorp);
             Competition.Tracks.Enqueue(track3);
-            
             Competition.Tracks.Enqueue(track4);
-           
-        }
+            Competition.Tracks.Enqueue(track5);
 
+        }
+        //Get the next race
         public static void NextRace()
         {
             //If a current race ended add points to the driver
-            if (CurrentRace != null) AddPointsToDrivers();
-
+            if (CurrentRace != null) Competition.AddPointsToDirvers(CurrentRace.FinishPosition);
+            //Set the race
             Track Race = Competition.NextTrack();
-
-            if (Race != null)
-            {
-                CurrentRace = new Race(Race, Competition.Participants);
-            }
-        }
-
-        public static void AddPointsToDrivers()
-        {
-            Competition.AddPointsToDirvers(CurrentRace.FinishPosition);
+            //Set the currentrace if there is a new race from the que
+            if (Race != null) CurrentRace = new Race(Race, Competition.Participants);
         }
     }
 

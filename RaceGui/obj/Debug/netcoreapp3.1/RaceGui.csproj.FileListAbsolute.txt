@@ -32,6 +32,7 @@ C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\obj\Debug\netcoreapp3.1\MainWindow.g
 C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\obj\Debug\netcoreapp3.1\RaceStatisticsWindow.g.cs
 C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\obj\Debug\netcoreapp3.1\App.g.cs
 C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\obj\Debug\netcoreapp3.1\RaceGui_Content.g.cs
+C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
 C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\obj\Debug\netcoreapp3.1\RaceGui_MarkupCompile.cache
 C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\obj\Debug\netcoreapp3.1\RaceGui_MarkupCompile.lref
 C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\obj\Debug\netcoreapp3.1\CompetitionStatisticsWindow.baml
@@ -45,4 +46,3 @@ C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\obj\Debug\netcoreapp3.1\RaceGui.cspr
 C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\obj\Debug\netcoreapp3.1\RaceGui.dll
 C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\obj\Debug\netcoreapp3.1\RaceGui.pdb
 C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\obj\Debug\netcoreapp3.1\RaceGui.genruntimeconfig.cache
-C:\Users\Dylan\Source\Repos\RaceSim\RaceGui\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs

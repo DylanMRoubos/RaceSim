@@ -8,9 +8,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controller", "Controller\Controller.csproj", "{9990F252-99D5-494A-9F94-F3AA8E2E8794}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControllerTest", "ControllerTest\ControllerTest.csproj", "{A33E3A4E-42AA-4FB4-8899-B610BEDD7EC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "ControllerTest\Tests.csproj", "{A33E3A4E-42AA-4FB4-8899-B610BEDD7EC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceGui", "RaceGui\RaceGui.csproj", "{4BDF3168-98F9-4974-85C7-94124E1571AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceGui", "RaceGui\RaceGui.csproj", "{4BDF3168-98F9-4974-85C7-94124E1571AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

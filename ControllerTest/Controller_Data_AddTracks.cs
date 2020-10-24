@@ -12,7 +12,7 @@ namespace ControllerTest
         [Test]
         public void Should_Add_Tracks_To_CurrentRace()
         {
-            Data.Competition = new Competition();
+            Data.Competition = new Competition("W1");
 
             var trackCount = Data.Competition.Tracks.Count;
 

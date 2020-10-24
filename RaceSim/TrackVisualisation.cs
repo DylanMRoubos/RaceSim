@@ -48,9 +48,12 @@ namespace RaceSim
             FillSectionBuildingGridDetailsArray(SectionBuildingGridDetails, Track);
             UpdateListWithLowestXAndY(SectionBuildingGridDetails, GetLowestXValue(SectionBuildingGridDetails), GetLowestYValue(SectionBuildingGridDetails));
 
+            CompleteTrack = new string[GetHighestYValue(SectionBuildingGridDetails), GetHighestXValue(SectionBuildingGridDetails), 4];
+
             BuildTrackArray(CompleteTrack, SectionBuildingGridDetails);
 
             DrawTrackComponentWithCompleteTrackArray(CompleteTrack, SectionBuildingGridDetails);
+
         }
 
         public static void FillSectionBuildingGridDetailsArray(List<SectionBuildingDetails> sectionBuildingDetaisl, Track track)

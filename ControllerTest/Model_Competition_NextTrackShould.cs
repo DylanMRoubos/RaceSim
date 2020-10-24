@@ -13,7 +13,7 @@ namespace ControllerTest
         [SetUp]
         public void SetUp()
         {
-            _competition = new Competition();
+            _competition = new Competition("W1");
         }
 
         [Test]

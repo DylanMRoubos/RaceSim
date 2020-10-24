@@ -4667,9 +4667,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\ControllerTest\\ControllerTest.csproj",
-      "projectName": "ControllerTest",
-      "projectPath": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\ControllerTest\\ControllerTest.csproj",
+      "projectUniqueName": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\ControllerTest\\Tests.csproj",
+      "projectName": "Tests",
+      "projectPath": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\ControllerTest\\Tests.csproj",
       "packagesPath": "C:\\Users\\Dylan\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\ControllerTest\\obj\\",
       "projectStyle": "PackageReference",

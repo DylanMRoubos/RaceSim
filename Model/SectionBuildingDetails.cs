@@ -8,10 +8,6 @@ namespace Model
         public int Y { get; set; }
         public Direction Direction;
 
-        public SectionBuildingDetails()
-        {
-        }
-
         public SectionBuildingDetails(Section section, int x, int y, Direction direction)
         {
             Section = section;

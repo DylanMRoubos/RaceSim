@@ -14,7 +14,7 @@ namespace ControllerTest
         [Test]
         public void Should_Add_Participants_To_CurrentRace()
         {
-            Data.Competition = new Competition();
+            Data.Competition = new Competition("W1");
 
             var participantCount = Data.Competition.Participants.Count;
 

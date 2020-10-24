@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "x2DkhZ9EqdpRys3Rhx3xqPYBblG7Ld0AlXIicjDtxkeIUX101UH8U2u949Pc95mhR0TL1IB0jM2tI33xw6zE8Q==",
+  "dgSpecHash": "UGX5nb7eS+12emlOxMwPGwFID1Lz1QRp+IrsB66V6LbhkxYKLF+UCJIvytnGVJlsI5OkzjA7WLfv11BWSU79bg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\ControllerTest\\ControllerTest.csproj",
+  "projectFilePath": "C:\\Users\\Dylan\\Source\\Repos\\RaceSim\\ControllerTest\\Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dylan\\.nuget\\packages\\microsoft.codecoverage\\16.4.0\\microsoft.codecoverage.16.4.0.nupkg.sha512",
     "C:\\Users\\Dylan\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
