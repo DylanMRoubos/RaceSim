@@ -6,11 +6,16 @@ namespace Model
 {
     public class Competition
     {
+        //List of all the participants in the competition
         public List<IParticipant> Participants { get; set; }
+        //Queueue of al the tracks within the competitiotn
         public Queue<Track> Tracks { get; set; }
+        //Generic list with all the driverpoints from the competition
         public RaceDetails<DriverPoints> DriverPoints {get; set;}
+        //Competition name
         public string Name { get; set; }
 
+        //Set the Competition details with a name
         public Competition(List<IParticipant> Participants, Queue<Track> Tracks, string name)
         {
             Participants = new List<IParticipant>();
@@ -19,7 +24,7 @@ namespace Model
             Name = name;
             DriverPoints = new RaceDetails<DriverPoints>();
         }
-
+        //Set the empty Competition details with a name
         public Competition(string name)
         {
             Participants = new List<IParticipant>();
@@ -27,7 +32,7 @@ namespace Model
             Name = name;
             DriverPoints = new RaceDetails<DriverPoints>();
         }
-
+        //add points to the drivers based on dictionary with key as finish position
         public void AddPointsToDirvers(Dictionary<int, string> FinishPosition)
         {
             int points = 0;
@@ -60,9 +65,8 @@ namespace Model
                 }
                 DriverPoints.AddItemToList(new DriverPoints(position.Value, points));
             }
-            Console.WriteLine(DriverPoints.GetHighest());
         }
-
+        //Get the next track if there is one
         public Track NextTrack()
         {
             if (Tracks.Count != 0)

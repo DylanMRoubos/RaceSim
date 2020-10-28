@@ -16,9 +16,10 @@ namespace RaceGui
         public static List<SectionBuildingDetails> SectionBuildingGridDetails;
         //Current Track
         public static Track Track;
-
+        //Canvas of the track size
         public static Bitmap canvas;
 
+        //Keep track of all the image variables
         #region graphics
         const string CornerLeftHorizontal = ".\\Assets\\CornerLeftHorizontal.png";
         const string CornerLeftVertical = ".\\Assets\\CornerLeftVertical.png";
@@ -39,7 +40,7 @@ namespace RaceGui
         const string Fire = ".\\Assets\\Fire.png";
         #endregion
 
-
+        //Draw the track every frame
         public static BitmapSource DrawTrack(Track track)
         {
             CreateArrayWithTrack(track);
@@ -56,7 +57,7 @@ namespace RaceGui
             return ImageCache.CreateBitmapSourceFromGdiBitmap(canvas);
         }
 
-
+        //Create the track array based on the track given
         public static void CreateArrayWithTrack(Track track)
         {
             Track = track;
@@ -66,6 +67,7 @@ namespace RaceGui
             UpdateListWithLowestXAndY(SectionBuildingGridDetails, GetLowestXValue(SectionBuildingGridDetails), GetLowestYValue(SectionBuildingGridDetails));
         }
 
+        //Place the track on the canvas
         public static Graphics PlaceTrack(Bitmap canvas)
         {
             int x = 0;
@@ -86,6 +88,7 @@ namespace RaceGui
             return g;
         }
 
+        //Add the sections to the grid details array
         public static void FillSectionBuildingGridDetailsArray(List<SectionBuildingDetails> sectionBuildingDetaisl, Track track)
         {
 
@@ -145,6 +148,7 @@ namespace RaceGui
             }
         }
 
+        //Update the sectionbuildingarray with the minimal of 0 to create a new array
         public static void UpdateListWithLowestXAndY(List<SectionBuildingDetails> details, int x, int y)
         {
             x = Math.Abs(x);
@@ -214,6 +218,7 @@ namespace RaceGui
             return highestY + 1;
         }
 
+        //Build the complete track array
         public static void BuildTrackArray(Bitmap[,] completeTrack, List<SectionBuildingDetails> sectionBuildingDetails)
         {
             foreach (var Section in sectionBuildingDetails)
@@ -320,6 +325,7 @@ namespace RaceGui
 
         }
 
+        //Add grass on the empty places
         public static void AddGrass(Bitmap[,] completeTrack)
         {
 
@@ -346,7 +352,7 @@ namespace RaceGui
             }
         }
 
-        //TODO: make sure not change bitmap in cache -- go cry
+        //Place the participants if there is a driver on a section
         public static void PlaceParticipantsOnTrack(Graphics g, List<SectionBuildingDetails> sectionBuildingDetails)
         {
 
@@ -362,8 +368,6 @@ namespace RaceGui
                     }
                     Bitmap carleft = GetParticipantImage(Sectiondata.Left, Section.Direction);
                     g.DrawImage(carleft, ((Section.X * 256 + 128)), ((Section.Y * 256)), 128, 128);
-                    //Check if car is broken and draw fire on it if so
-                   
                 }
                 if (Sectiondata.Right != null)
                 {
@@ -373,11 +377,12 @@ namespace RaceGui
                     }
                     Bitmap carRight = GetParticipantImage(Sectiondata.Right, Section.Direction);
                     g.DrawImage(carRight, ((Section.X * 256)), ((Section.Y * 256 + 128)), 128, 128);
-                    
+
                 }
             }
         }
 
+        //Get the image of the car based on the direction
         public static Bitmap GetParticipantImage(IParticipant participant, Direction direction)
         {
 
@@ -398,7 +403,8 @@ namespace RaceGui
             }
 
         }
-        //TODO: FIX small bug in the image scaling in the corners
+       
+        //Method to rotate a bitmap
         public static Bitmap RotateImage(Bitmap b, Direction direction)
         {
             int maxside = (int)(Math.Sqrt(b.Width * b.Width + b.Height * b.Height));
@@ -426,11 +432,11 @@ namespace RaceGui
             }
 
             //move image back
-            g.TranslateTransform(-(float)b.Width / 2, -(float)b.Height / 2 );
+            g.TranslateTransform(-(float)b.Width / 2, -(float)b.Height / 2);
 
             g.DrawImage(b, 0, 0, 128, 128);
             return returnBitmap;
         }
 
-}
+    }
 }

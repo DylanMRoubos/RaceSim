@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using Controller;
 using Model;
 
-
-//TODO: remove list from parameters - add comments
 namespace RaceSim
 {
     public static class TrackVisualisation
     {
-
         //3D array with x, y coordinates and array with the drawn trackcomponent
         public static string[,,] CompleteTrack;
         //List with the buildingdetails for the completetrack
@@ -17,12 +14,14 @@ namespace RaceSim
         //Current Track
         public static Track Track;
 
+        //Initialize with the event coppeled
         public static void Initialize()
         {
             Data.CurrentRace.DriversChanged += OnDriversChanged;
             Data.CurrentRace.NextRace += NextRace;
         }
 
+        //Keep track of all the section visualisation
         #region graphics
         private static string[] _startHorizontal = { "----", " 1> ", "2>  ", "----" };
         private static string[] _startVertical = { "|  |", "|^ |", "| ^|", "|  |" };
@@ -41,6 +40,7 @@ namespace RaceSim
         private static string[] _cornerLefVertical = { "|  \\", "| 1 ", "\\  2", " \\--" };
         #endregion
 
+        //Draw the track every frame
         public static void DrawTrack(Track track)
         {
             Track = track;
@@ -56,6 +56,7 @@ namespace RaceSim
 
         }
 
+        //Add the sections to the grid details array
         public static void FillSectionBuildingGridDetailsArray(List<SectionBuildingDetails> sectionBuildingDetaisl, Track track)
         {
 
@@ -69,7 +70,7 @@ namespace RaceSim
             {
 
                 //Determine direction when section is a corner
-                if (GetSectionType(Section) == SectionTypes.LeftCorner)
+                if (Section.SectionType == SectionTypes.LeftCorner)
                 {
 
                     if (lastDirection == Direction.North)
@@ -82,7 +83,7 @@ namespace RaceSim
                     }
                 }
                 //Determine direction when section is a corner
-                if (GetSectionType(Section) == SectionTypes.RightCorner)
+                if (Section.SectionType == SectionTypes.RightCorner)
                 {
                     if (lastDirection == Direction.West)
                     {
@@ -118,7 +119,8 @@ namespace RaceSim
             }
         }
 
-        //BIGGEST FLIPPIN METHOD EVER!!! Used to fill the trackArray
+
+        //Build the complete track array
         public static void BuildTrackArray(string[,,] completeTrack, List<SectionBuildingDetails> sectionBuildingDetails)
         {
             foreach (var Section in sectionBuildingDetails)
@@ -265,6 +267,7 @@ namespace RaceSim
 
         }
 
+        //Update the sectionbuildingarray with the minimal of 0 to create a new array
         public static void UpdateListWithLowestXAndY(List<SectionBuildingDetails> details, int x, int y)
         {
             x = Math.Abs(x);
@@ -276,25 +279,6 @@ namespace RaceSim
                 detail.X += x;
                 detail.Y += y;
             }
-        }
-
-        public static SectionTypes GetSectionType(Section section)
-        {
-            // return section.SectionType;
-            switch (section.SectionType)
-            {
-                case SectionTypes.StartGrid:
-                    return SectionTypes.StartGrid;
-                case SectionTypes.Straight:
-                    return SectionTypes.Straight;
-                case SectionTypes.RightCorner:
-                    return SectionTypes.RightCorner;
-                case SectionTypes.LeftCorner:
-                    return SectionTypes.LeftCorner;
-                case SectionTypes.Finish:
-                    return SectionTypes.Finish;
-            }
-            return SectionTypes.Straight;
         }
 
         public static int GetLowestXValue(List<SectionBuildingDetails> details)
@@ -352,7 +336,7 @@ namespace RaceSim
             }
             return highestY + 1;
         }
-
+        //Draw the track based on the completetrack 3d string array
         public static void DrawTrackComponentWithCompleteTrackArray(String[,,] completeTrack, List<SectionBuildingDetails> detail)
         {
 
@@ -379,7 +363,7 @@ namespace RaceSim
             }
             Console.WriteLine($"Current highest points: {Data.Competition.DriverPoints.GetHighest()}");
         }
-
+        //Place the participants if there is a driver on a section
         public static string PLaceParticipantsOnTrack(string sectionRow, IParticipant participant1, IParticipant participant2)
         {
             var returnvalue = sectionRow;
@@ -417,12 +401,14 @@ namespace RaceSim
             }
             return returnvalue;
         }
-
+        //Clear te console and draw the new track
         public static void OnDriversChanged(Object source, DriversChangedEventArgs e)
         {
             Console.Clear();
             DrawTrack(e.Track);
         }
+        
+        //Add the new events (intialize) to the new race when previous race ends
         public static void NextRace(Object source, RaceStartEventArgs e)
         {
             Initialize();

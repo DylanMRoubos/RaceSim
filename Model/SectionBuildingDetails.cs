@@ -1,6 +1,7 @@
 ﻿using System;
 namespace Model
 {
+    //Array to keep track of the sectiondata to build the track in visualisation
     public class SectionBuildingDetails
     {
         public Section Section { get; }

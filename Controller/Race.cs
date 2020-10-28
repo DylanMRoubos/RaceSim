@@ -26,9 +26,9 @@ namespace Controller
         //Check how much drivers are removed from the race
         private int DriversRemoved = 0;
         //Constant to keep track of the amount of laps that need to be driven before finishing
-        private const int AmountOfLaps = 1;
+        private const int AmountOfLaps = 2;
         //Refresh interval in MiliSeconds
-        private const int IntervalMiliSeconds = 100;
+        private const int IntervalMiliSeconds = 125;
 
         //Dictionaries to keep track of data within the race
         public Dictionary<Section, SectionData> _positions = new Dictionary<Section, SectionData>();
@@ -137,8 +137,8 @@ namespace Controller
         {
             brokenDownAmount.AddItemToList(new DriverBrokenDownAmount(drivername, 1));
         }
-
-        //TODO: make more elegent this methods
+        
+        //Check if the driver can be moved to the next section
         public bool DriverMovedToNextSection(LinkedListNode<Section> section, LinkedListNode<Section> nextSection, int LeftRight, DateTime CurrentTime)
         {
             SectionData sectionValue = GetSectionData(section.Value);
@@ -254,15 +254,9 @@ namespace Controller
                     sectionValue.Right = null;
                     sectionValue.DistanceRight = 100;
                 }
-
-
                 return true;
             }
-
-            else
-            {
-                return false;
-            }
+            else return false;
         }
 
         //Return if a driver is broken after determining if a driver is brkoen or not

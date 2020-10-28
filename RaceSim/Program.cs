@@ -8,14 +8,14 @@ namespace RaceSim
     {
         static void Main(string[] args)
         {
+            //Init the race
             Data.Initialize();
             Data.NextRace();
-            //Data.NextRace();
-
-
+            //Visualize the race to the console
             TrackVisualisation.Initialize();
             TrackVisualisation.DrawTrack(Data.CurrentRace.Track);
 
+            //Keep the terminal open while racing
             for (; ; )
             {
                 Thread.Sleep(15000);
