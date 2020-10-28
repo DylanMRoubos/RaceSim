@@ -30,6 +30,8 @@ namespace RaceGui
 
         public void OnNextRaceEvent(Object sender, RaceStartEventArgs e)
         {
+            Data.CurrentRace.NextRace += OnNextRaceEvent;
+
             CurrentRace = e.Race;
 
             SectionTimes = CurrentRace.sectionTimes;

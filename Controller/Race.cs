@@ -26,7 +26,7 @@ namespace Controller
         //Check how much drivers are removed from the race
         private int DriversRemoved = 0;
         //Constant to keep track of the amount of laps that need to be driven before finishing
-        private const int AmountOfLaps = 2;
+        private const int AmountOfLaps = 1;
         //Refresh interval in MiliSeconds
         private const int IntervalMiliSeconds = 125;
 
