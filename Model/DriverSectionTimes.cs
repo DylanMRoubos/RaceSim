@@ -8,10 +8,6 @@ namespace Model
         public Section Section { get; set; }
         public string Name { get; set; }
 
-        public DriverSectionTimes()
-        {
-        }
-
         public DriverSectionTimes(string name, TimeSpan time, Section section)
         {
             Name = name;

@@ -28,7 +28,7 @@ namespace Controller
         //Constant to keep track of the amount of laps that need to be driven before finishing
         private const int AmountOfLaps = 1;
         //Refresh interval in MiliSeconds
-        private const int IntervalMiliSeconds = 125;
+        private const int IntervalMiliSeconds = 500;
 
         //Dictionaries to keep track of data within the race
         public Dictionary<Section, SectionData> _positions = new Dictionary<Section, SectionData>();
